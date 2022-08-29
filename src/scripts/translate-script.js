@@ -81,11 +81,10 @@ const checkForTriplets = (dna) => {
 
 const translateDna = (dna) => {
   let protein = [];
+  if (dna === 'Non-DNA character entered, please enter ATCG only') { return dna } else {
   if (checkForTriplets(dna) === false) {
-    throw Error(
-      'DNA is not in triplets - please input sequence with complete triplets.'
-    );
-  } else {
+    return 'DNA is not in triplets - please input sequence with complete triplets.' }
+   else {
     // split into triplets
     const dnaArray = dnaToArray(dna);
     // look up codons
@@ -93,7 +92,7 @@ const translateDna = (dna) => {
       protein.push(codonToAATable[codon]);
     }
   }
-  return protein.join('-');
+  return protein.join('-');}
 };
 
 export { dnaToArray, checkForTriplets, translateDna };

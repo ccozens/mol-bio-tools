@@ -11,7 +11,7 @@ const ToolList = ({ list }) => (
 );
 
 export const Navbar = () => (
-    <nav className="flex w-11/12 p-2 mx-auto border">
+    <nav className="flex w-11/12 p-2 mx-auto rounded bg-slate-700">
     <h1 className="text-4xl btn"> welcome</h1>
     <ToolList list={tools} />
   </nav>

@@ -3,10 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "jest": {
-    "verbose": true,
     "collectCoverageFrom": [
-      "<RootDir>/src/components/",
-      "<RootDir>/src/pages/"
+      "./src/components/**"
     ],
     "coverageThreshold": {
       "global": {

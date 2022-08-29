@@ -1,14 +1,46 @@
-import { render, screen } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import App from '../App';
 
-/* test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-}); */
+afterEach(cleanup);
 
-test('renders learn react link', () => {
-    const expected = /learn react/i;
-    const { getByText } = render(<App />); 
+describe ('check components render', () => {
+test('nav bar renders', () => {
+    const expected = /WELCOME/i;
+    const { getByText } = render(< App />); 
     expect(getByText(expected)); 
  });
+
+ test('transcribe component', () => {
+  // expected
+  const transcribe = 'Transcribe DNA to RNA';
+  
+  // render
+  const { getByText } = render(< App />)
+
+  // test
+  expect(getByText(transcribe));
+  })
+
+ test('reverse complement component', () => {
+  // expected
+  const revComp = 'Reverse complement DNA';
+
+  // render
+  const { getByText } = render(<App />)
+
+  // test
+  expect(getByText(revComp));
+ })
+
+ test('translate component', () => {
+  // expected
+  const translate = 'Translate DNA to protein';
+
+  // render
+  const { getByText } = render(<App />)
+
+  // test
+  expect(getByText(translate));
+ })
+}
+)

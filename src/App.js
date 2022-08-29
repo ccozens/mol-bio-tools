@@ -7,9 +7,7 @@ import { Translate } from './components/translate';
 function App() {
   return (
     <div>
-      <navbar className="bg-base-100">
-        <Navbar />
-      </navbar>
+      < Navbar />
       < Transcribe />
       < ReverseComplementDNA />
       < Translate />

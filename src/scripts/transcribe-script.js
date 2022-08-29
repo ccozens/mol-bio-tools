@@ -3,3 +3,4 @@ export const transcribe = (dna) => {
     ? dna
     : dna.replaceAll('T', 'U');
 };
+

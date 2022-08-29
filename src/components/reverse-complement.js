@@ -28,7 +28,7 @@ export const ReverseComplementDNA = () => {
           onChange={handleTextChange}
           onClick={handleClick}
           type="text"
-          aria-label="DNA input form"
+          aria-label="DNA input form for reverse complement"
         />
         </div>
         <div className="p-2 text-lg ">Reverse complement will show here:</div>
