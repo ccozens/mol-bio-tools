@@ -6,7 +6,7 @@ import { Translate } from './components/translate';
 
 function App() {
   return (
-    <div>
+    <div className="bg-slate-700">
       < Navbar />
       < Transcribe />
       < ReverseComplementDNA />

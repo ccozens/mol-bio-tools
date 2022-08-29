@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
 export const Translate = () => {
+  // control textbox default content and updating
   const [input, setInput] = useState(
     'GTTATCTATGAGCAGATCACCCGCGATCTG'
   );
@@ -14,9 +15,19 @@ export const Translate = () => {
     setInput('');
   };
 
+  // control protein format
+  const [outFormat, setOutFormat] = useState('threeLetter');
+  let letterSwitch = outFormat === 'threeLetter' ? 'one letter' : 'three letter';
+  
+  // control protein spacer
+  const [spacer, setSpacer] = useState('');
+  
+  // check input and translate protein
   const checkedInput = checkInput(input);
-
-  const protein = translateDna(checkedInput);
+  const protein = translateDna(checkedInput, outFormat, spacer);
+  const updateSpacer = (event) => {
+    setSpacer(event.target.value);
+  }
 
   return (
     <div className="container gap-4 p-4 mx-auto text-2xl">
@@ -36,6 +47,27 @@ export const Translate = () => {
         </div>
         <div className="p-2 text-lg ">
           Protein sequence will show here:
+          <div className="inline pl-4 space-x-5">
+            <div
+              className="w-1/4 p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-slate-800 hover:bg-slate-600 hover:border-slate-400"
+            >
+              <div
+                className="button"
+                onClick={() => setOutFormat(outFormat === 'threeLetter' ? 'oneLetter' : 'threeLetter')}
+              >
+                Show {letterSwitch} code
+              </div>
+            </div>
+            
+            <select className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-slate-800" onChange={updateSpacer}>
+              <option disabled selected>
+                Spacer
+              </option>
+              <option value='-'>hyphen (-) </option>
+              <option value='.'>dot (.)</option>
+              <option value=''>no space ()</option>
+            </select>
+          </div>
         </div>
         <div
           id="outputBox"

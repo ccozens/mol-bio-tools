@@ -1,4 +1,4 @@
-const codonToAATable = {
+const codonToAATableThreeLetter = {
   GCT: 'Ala',
   GCC: 'Ala',
   GCA: 'Ala',
@@ -65,6 +65,73 @@ const codonToAATable = {
   TAA: '*',
 };
 
+const codonToAATableOneLetter = {
+  GCT: 'A',
+  GCC: 'A',
+  GCA: 'A',
+  GCG: 'A',
+  TTA: 'L',
+  TTG: 'L',
+  CTT: 'L',
+  CTC: 'L',
+  CTA: 'L',
+  CTG: 'L',
+  CGT: 'R',
+  CGC: 'R',
+  CGA: 'R',
+  CGG: 'R',
+  AGA: 'R',
+  AGG: 'R',
+  AAA: 'K',
+  AAG: 'K',
+  AAT: 'N',
+  AAC: 'N',
+  ATG: 'M',
+  GAT: 'D',
+  GAC: 'D',
+  TTT: 'F',
+  TTC: 'F',
+  TGT: 'C',
+  TGC: 'C',
+  CCT: 'P',
+  CCC: 'P',
+  CCA: 'P',
+  CCG: 'P',
+  CAA: 'Q',
+  CAG: 'Q',
+  TCT: 'S',
+  TCC: 'S',
+  TCA: 'S',
+  TCG: 'S',
+  AGT: 'S',
+  AGC: 'S',
+  GAA: 'E',
+  GAG: 'E',
+  ACT: 'T',
+  ACC: 'T',
+  ACA: 'T',
+  ACG: 'T',
+  GGT: 'G',
+  GGC: 'G',
+  GGA: 'G',
+  GGG: 'G',
+  TGG: 'W',
+  CAT: 'H',
+  CAC: 'H',
+  TAT: 'Y',
+  TAC: 'Y',
+  ATT: 'I',
+  ATC: 'I',
+  ATA: 'I',
+  GTT: 'V',
+  GTC: 'V',
+  GTA: 'V',
+  GTG: 'V',
+  TAG: '*',
+  TGA: '*',
+  TAA: '*',
+};
+
 // splits input string to uppercae triplets
 const dnaToArray = (dna) => {
   let tempArray = [];
@@ -79,7 +146,7 @@ const checkForTriplets = (dna) => {
   return dna.length % 3 === 0 ? true : false;
 };
 
-const translateDna = (dna) => {
+const translateDna = (dna, outFormat, proteinJoin) => {
   let protein = [];
   if (dna === 'Non-DNA character entered, please enter ATCG only') { return dna } else {
   if (checkForTriplets(dna) === false) {
@@ -87,12 +154,18 @@ const translateDna = (dna) => {
    else {
     // split into triplets
     const dnaArray = dnaToArray(dna);
+    if (outFormat === 'threeLetter') {
     // look up codons
     for (let codon of dnaArray) {
-      protein.push(codonToAATable[codon]);
-    }
-  }
-  return protein.join('-');}
+      protein.push(codonToAATableThreeLetter[codon]);
+    }}
+    else {if (outFormat === 'oneLetter') 
+    for (let codon of dnaArray) {
+      protein.push(codonToAATableOneLetter[codon]);
+    }};
+  
+  return protein.join(proteinJoin);}
 };
+}
 
 export { dnaToArray, checkForTriplets, translateDna };
