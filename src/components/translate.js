@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Select from 'react-select';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
 export const Translate = () => {
