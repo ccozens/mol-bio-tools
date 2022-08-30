@@ -1,6 +1,5 @@
 import TagManager from 'react-gtm-module';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Navbar } from './components/navbar';
 import { Transcribe } from './components/transcribe';
 import { ReverseComplementDNA } from './components/reverse-complement';
@@ -15,9 +14,7 @@ TagManager.initialize(tagManagerArgs);
 function App() {
   return (
     <div className="bg-peach-std text-slate-900">
-      <BrowserRouter>
-        <Navbar />
-      </BrowserRouter>
+      <Navbar />
       <Transcribe />
       <ReverseComplementDNA />
       <Translate />
