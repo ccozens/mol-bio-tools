@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { transcribe } from '../scripts/transcribe-script';
+
 export const Transcribe = () => {
   const [input, setInput] = useState('ATGCAA');
 
@@ -17,14 +18,14 @@ export const Transcribe = () => {
   const rna = transcribe(checkedInput);
 
   return (
-    <div className="container gap-4 p-4 mx-auto text-2xl">
+    <div className="container gap-4 px-4 py-8 mx-auto text-2xl" id="Transcribe">
       Transcribe DNA to RNA
       <div className="columns-2">
         <div className="p-2 text-lg">Enter DNA Here:</div>
-        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-slate-800 min-h-16">
+        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16">
           <textarea
             id="inputBox"
-            className="w-full h-full p-2 bg-slate-800"
+            className="w-full h-full p-2 bg-mimosa-std"
             value={input}
             onChange={handleTextChange}
             onClick={handleClick}
@@ -35,7 +36,7 @@ export const Transcribe = () => {
         <div className="p-2 text-lg ">RNA will show here:</div>
         <div
           id="outputBox"
-          className="h-48 p-2 text-base border rounded border-slate-600 bg-slate-800"
+          className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std"
         >
           {rna}
         </div>

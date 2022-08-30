@@ -31,14 +31,14 @@ export const Translate = () => {
   };
 
   return (
-    <div className="container gap-4 p-4 mx-auto text-2xl">
+    <div className="container gap-4 px-4 py-8 mx-auto text-2xl" id="Translate">
       Translate DNA to protein
       <div className="columns-2">
         <div className="p-2 text-lg">Enter DNA Here:</div>
-        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-slate-800 min-h-16">
+        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16">
           <textarea
             id="inputBox"
-            className="w-full h-full p-2 bg-slate-800"
+            className="w-full h-full p-2 bg-mimosa-std"
             value={input}
             onChange={handleTextChange}
             onClick={handleClick}
@@ -49,7 +49,7 @@ export const Translate = () => {
         <div className="p-2 text-lg ">
           Protein sequence will show here:
           <div className="columns-2 ">
-            <div className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-slate-800 hover:bg-slate-600 hover:border-slate-400">
+            <div className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400">
               <div
                 className="button"
                 onClick={() =>
@@ -66,7 +66,7 @@ export const Translate = () => {
 
             <select
               id="#spacer"
-              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-slate-800"
+              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
               onChange={updateSpacer}
             >
               <option defaultValue={spacer}>
@@ -81,7 +81,7 @@ export const Translate = () => {
         </div>
         <div
           id="outputBox"
-          className="h-40 p-2 text-base border rounded border-slate-600 bg-slate-800"
+          className="h-40 p-2 text-base border rounded border-slate-600 bg-mimosa-std"
         >
           {protein}
         </div>
@@ -91,4 +91,4 @@ export const Translate = () => {
 };
 
 /* <p>Spacer
-            <Select id="#spacer" className="p-1 text-sm border rounded dropdown-toggle border-slate-600 bg-slate-800" onChange={updateSpacer} options={spacerOptions} defaultValue={spacerOptions[4]} value={spacerOptions.value}/> </p>*/
+            <Select id="#spacer" className="p-1 text-sm border rounded dropdown-toggle border-slate-600 bg-mimosa" onChange={updateSpacer} options={spacerOptions} defaultValue={spacerOptions[4]} value={spacerOptions.value}/> </p>*/
