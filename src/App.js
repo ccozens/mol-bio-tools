@@ -1,3 +1,11 @@
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    gtmId: 'GTM-000000'
+}
+
+TagManager.initialize(tagManagerArgs)
+
 import './App.css';
 import { Navbar } from './components/navbar';
 import { Transcribe } from './components/transcribe';

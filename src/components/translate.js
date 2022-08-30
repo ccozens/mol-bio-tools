@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select from 'react-select';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
 export const Translate = () => {
@@ -17,17 +18,18 @@ export const Translate = () => {
 
   // control protein format
   const [outFormat, setOutFormat] = useState('threeLetter');
-  let letterSwitch = outFormat === 'threeLetter' ? 'one letter' : 'three letter';
-  
+  let letterSwitch =
+    outFormat === 'threeLetter' ? 'one letter' : 'three letter';
+
   // control protein spacer
   const [spacer, setSpacer] = useState('');
-  
+
   // check input and translate protein
   const checkedInput = checkInput(input);
   const protein = translateDna(checkedInput, outFormat, spacer);
   const updateSpacer = (event) => {
     setSpacer(event.target.value);
-  }
+  };
 
   return (
     <div className="container gap-4 p-4 mx-auto text-2xl">
@@ -47,31 +49,40 @@ export const Translate = () => {
         </div>
         <div className="p-2 text-lg ">
           Protein sequence will show here:
-          <div className="inline pl-4 space-x-5">
-            <div
-              className="w-1/4 p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-slate-800 hover:bg-slate-600 hover:border-slate-400"
-            >
+          <div className="columns-2 ">
+            <div className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-slate-800 hover:bg-slate-600 hover:border-slate-400">
               <div
                 className="button"
-                onClick={() => setOutFormat(outFormat === 'threeLetter' ? 'oneLetter' : 'threeLetter')}
+                onClick={() =>
+                  setOutFormat(
+                    outFormat === 'threeLetter'
+                      ? 'oneLetter'
+                      : 'threeLetter'
+                  )
+                }
               >
                 Show {letterSwitch} code
               </div>
             </div>
-            
-            <select className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-slate-800" onChange={updateSpacer}>
-              <option disabled selected>
-                Spacer
+
+            <select
+              id="#spacer"
+              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-slate-800"
+              onChange={updateSpacer}
+            >
+              <option defaultValue={spacer}>
+                Modify spacer
               </option>
-              <option value='-'>hyphen (-) </option>
-              <option value='.'>dot (.)</option>
-              <option value=''>no space ()</option>
+              <option value="-">hyphen (-) </option>
+              <option value=".">dot (.)</option>
+              <option value=" ">space ( )</option>
+              <option value="">no space ( )</option>
             </select>
           </div>
         </div>
         <div
           id="outputBox"
-          className="h-48 p-2 text-base border rounded border-slate-600 bg-slate-800"
+          className="h-40 p-2 text-base border rounded border-slate-600 bg-slate-800"
         >
           {protein}
         </div>
@@ -79,3 +90,6 @@ export const Translate = () => {
     </div>
   );
 };
+
+/* <p>Spacer
+            <Select id="#spacer" className="p-1 text-sm border rounded dropdown-toggle border-slate-600 bg-slate-800" onChange={updateSpacer} options={spacerOptions} defaultValue={spacerOptions[4]} value={spacerOptions.value}/> </p>*/
