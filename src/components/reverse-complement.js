@@ -31,7 +31,8 @@ export const ReverseComplementDNA = () => {
           aria-label="DNA input form for reverse complement"
         />
         </div>
-        <div className="p-2 text-lg ">Reverse complement will show here:</div>
+        <div className="hidden p-2 text-lg md:block">Reverse complement will show here:</div>
+        <div className="p-2 text-lg md:hidden ">Reverse complement:</div>
         <div id="outputBox" className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std">{revComp}</div>
       </div>
     </div>

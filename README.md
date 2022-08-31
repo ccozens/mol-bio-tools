@@ -3,3 +3,10 @@
 # DNA tools
 
 Much to do
+
+
+
+
+Icons by svgrepo.com https://www.pngrepo.com/svg/51923/dna
+
+Using svg as favicon https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/ (updated manifest.json)

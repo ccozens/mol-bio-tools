@@ -18,7 +18,7 @@ export const Translate = () => {
   // control protein format
   const [outFormat, setOutFormat] = useState('threeLetter');
   let letterSwitch =
-    outFormat === 'threeLetter' ? 'one letter' : 'three letter';
+    outFormat === 'threeLetter' ? 'One letter' : 'Three letter';
 
   // control protein spacer
   const [spacer, setSpacer] = useState('');
@@ -46,8 +46,10 @@ export const Translate = () => {
             aria-label="DNA input form for translate"
           />
         </div>
-        <div className="p-2 text-lg ">
-          Protein sequence will show here:
+        <div className="p-2 text-lg">
+          <p className="hidden md:block">Protein sequence will show here:</p>
+          <p className="md:hidden">Protein sequence:</p>
+          
           <div className="columns-2 ">
             <div className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400">
               <div
@@ -60,7 +62,8 @@ export const Translate = () => {
                   )
                 }
               >
-                Show {letterSwitch} code
+                <p className="hidden md:block">Show {letterSwitch.toLowerCase()} code</p>
+                <p className="md:hidden">{letterSwitch}</p>
               </div>
             </div>
 
@@ -70,7 +73,7 @@ export const Translate = () => {
               onChange={updateSpacer}
             >
               <option defaultValue={spacer}>
-                Modify spacer
+                Spacer
               </option>
               <option value="-">hyphen (-) </option>
               <option value=".">dot (.)</option>

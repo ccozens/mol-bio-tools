@@ -5,7 +5,7 @@ afterEach(cleanup);
 
 describe ('check components render', () => {
 test('nav bar renders', () => {
-    const expected = /WELCOME/i;
+    const expected = /dna utilities/i;
     const { getByText } = render(< App />); 
     expect(getByText(expected)); 
  });
