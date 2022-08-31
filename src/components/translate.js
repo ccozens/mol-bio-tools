@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select from 'react-select';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
 export const Translate = () => {
@@ -22,19 +23,27 @@ export const Translate = () => {
 
   // control protein spacer
   const [spacer, setSpacer] = useState('');
+  
+  const spacerOptions = [
+    {value: '-', label: 'hyphen (-)'},
+    {value: '.', label: 'dot (.)'},
+    {value: ' ', label: 'space ( )'},
+    {value: '', label: 'no space ()'},
+  ]
+  
+  const updateSpacer = (event) => {
+    setSpacer(event.value);
+  };
 
   // check input and translate protein
   const checkedInput = checkInput(input);
   const protein = translateDna(checkedInput, outFormat, spacer);
-  const updateSpacer = (event) => {
-    setSpacer(event.target.value);
-  };
 
   return (
     <div className="container gap-4 px-4 py-8 mx-auto text-2xl" id="Translate">
-      Translate DNA to protein
+      <p>Translate DNA to protein</p>
       <div className="columns-2">
-        <div className="p-2 text-lg">Enter DNA Here:</div>
+        <div className="p-2 text-lg"><p>Enter DNA Here:</p></div>
         <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16">
           <textarea
             id="inputBox"
@@ -53,6 +62,7 @@ export const Translate = () => {
           <div className="columns-2 ">
             <div className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400">
               <div
+              aria-label="protein view toggle"
                 className="button"
                 onClick={() =>
                   setOutFormat(
@@ -66,20 +76,14 @@ export const Translate = () => {
                 <p className="md:hidden">{letterSwitch}</p>
               </div>
             </div>
-
-            <select
-              id="#spacer"
-              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
-              onChange={updateSpacer}
-            >
-              <option defaultValue={spacer}>
-                Spacer
-              </option>
-              <option value="-">hyphen (-) </option>
-              <option value=".">dot (.)</option>
-              <option value=" ">space ( )</option>
-              <option value="">no space ( )</option>
-            </select>
+                < Select
+                aria-label="spacer toggle"
+                className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
+                defaultValue={spacer}
+                value={spacer}
+                onChange={updateSpacer}
+                options={spacerOptions}
+             />
           </div>
         </div>
         <div
@@ -95,3 +99,17 @@ export const Translate = () => {
 
 /* <p>Spacer
             <Select id="#spacer" className="p-1 text-sm border rounded dropdown-toggle border-slate-600 bg-mimosa" onChange={updateSpacer} options={spacerOptions} defaultValue={spacerOptions[4]} value={spacerOptions.value}/> </p>*/
+/* 
+<select
+              aria-label="spacer toggle"
+              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
+              onChange={updateSpacer}
+            >
+              <option defaultValue={spacer}>
+                Spacer
+              </option>
+              <option value="-">hyphen (-) </option>
+              <option value=".">dot (.)</option>
+              <option value=" ">space ( )</option>
+              <option value="">no space ( )</option>
+            </select>*/
