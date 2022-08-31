@@ -6,7 +6,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { Translate } from '../components/translate';
 
 
-// tbr-tab for test block
 describe('transcribe functionality', () => {
   
   test('correct default text shown', () => {

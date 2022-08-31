@@ -21,6 +21,7 @@ describe('transcribe functionality', () => {
     getByText((txInput, defaultText));
   });
 
+
   test('input box blanks when clicked', async () => {
     // setup
     const { getByRole, findByText} = render(<Transcribe />);
