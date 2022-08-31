@@ -14,7 +14,7 @@ const tools = [
 const toolList = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="inline-flex p-2 m-auto rounded md:hover:bg-coral-light hover:bg-coral-light/25 hover:text-slate-900"
+    className="inline-flex p-2 m-auto rounded lg:hover:bg-coral-light hover:bg-coral-light/25 hover:text-slate-900"
     key={tool}
   >
     {tool}
@@ -23,10 +23,10 @@ const toolList = tools.map((tool) => (
 
 export const Navbar = () => (
   <nav className="flex w-11/12 gap-4 p-2 mx-auto rounded bg-coral-std">
-    <img src={DNA} alt="stylised DNA" className="my-auto h-14"></img>
-    <h1 className="my-auto text-4xl"> DNA utilities</h1>
+    <img src={DNA} alt="stylised DNA" className="h-12 my-auto md:h-14"></img>
+    <h1 className="my-auto text-5xl whitespace-nowrap"> DNA utilities</h1>
     
-    <div className="m-auto dropdown md:hidden">
+    <div className="m-auto dropdown lg:hidden">
     <label tabindex="0" for="menu-toggle" className="m-1 cursor-pointer btn">
             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
@@ -39,7 +39,7 @@ export const Navbar = () => (
       </div>
    
    
-   <nav className="hidden gap-4 p-2 m-auto text-lg md:block">
+   <nav className="hidden gap-4 p-2 m-auto text-lg lg:block">
      {toolList}
     </nav>
     
