@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import selectEvent from 'react-select-event';
 import '@testing-library/jest-dom/extend-expect';
 // import modules to test
 import { Translate } from '../components/translate';
@@ -62,9 +61,10 @@ describe('transcribe functionality', () => {
  test('clicking spacer toggle updates protein view', async () => {
   //setup 
   const { getByLabelText, findByText } = render(<Translate />); 
+  const user = userEvent.setup();
   const spacerToggle = getByLabelText('spacer toggle');
   // interact
-  await selectEvent.select(spacerToggle, ['hyphen (-)']);
+  await user.selectOptions(spacerToggle, ['hyphen (-)']);
   // test protein changes
   findByText('Val-Ile-Tyr-Glu-Gln-Ile-Thr-Arg-Asp-Leu');
 });
