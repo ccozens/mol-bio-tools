@@ -6,23 +6,30 @@ export const Transcribe = () => {
   const [input, setInput] = useState('ATGCAA');
 
   const handleTextChange = (event) => {
+    // set input to entered text
     setInput(event.target.value);
   };
 
+  
   const handleClick = () => {
-    setInput('');
+    if (input === 'ATGCAA') {
+      setInput('');
+    }
   };
 
   const checkedInput = checkInput(input);
+  const rna = transcribe(checkedInput);  
 
-  const rna = transcribe(checkedInput);
 
   return (
-    <div className="container gap-4 px-4 py-8 mx-auto text-2xl" id="Transcribe">
+    <div
+      className="container gap-4 px-4 py-8 mx-auto text-2xl"
+      id="Transcribe"
+    >
       Transcribe DNA to RNA
       <div className="columns-2">
         <div className="p-2 text-lg">Enter DNA Here:</div>
-        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16">
+        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16 ">
           <textarea
             id="inputBox"
             className="w-full h-full p-2 bg-mimosa-std"
@@ -44,4 +51,3 @@ export const Transcribe = () => {
     </div>
   );
 };
-

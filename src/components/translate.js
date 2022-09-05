@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
+import { aaCount_individual } from '../scripts/chartSeq';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Label,
+  Text,
+} from 'recharts';
+
 export const Translate = () => {
   // control textbox default content and updating
   const [input, setInput] = useState(
@@ -11,8 +23,9 @@ export const Translate = () => {
     setInput(event.target.value);
   };
 
-  const handleClick = () => {
-    setInput('');
+  const handleClick = (event) => {
+    if ( input === 'GTTATCTATGAGCAGATCACCCGCGATCTG') 
+    {setInput('')};
   };
 
   // control protein format
@@ -30,17 +43,41 @@ export const Translate = () => {
     { value: '', label: 'no space ()' },
   ];
 
-  const listSpacerOptions = spacerOptions.map((item) => <option value={item.value} key={item.value}>{item.label}</option>);
+  const listSpacerOptions = spacerOptions.map((item) => (
+    <option value={item.value} key={item.value}>
+      {item.label}
+    </option>
+  ));
 
   const updateSpacer = (event) => {
     setSpacer(event.target.value);
   };
 
-
-
   // check input and translate protein
   const checkedInput = checkInput(input);
   const protein = translateDna(checkedInput, outFormat, spacer);
+
+  // protein for chart
+  const proteinForChart = translateDna(checkedInput, 'oneLetter', '');
+  const proteinAACounts = aaCount_individual(proteinForChart);
+
+  const proteinBar = (
+    <BarChart data={proteinAACounts} width={600} height={400}>
+      <Text>beep</Text>
+      <Bar dataKey="count" fill="#8884d8" />
+      <XAxis dataKey="resi" />
+      <YAxis>
+        {' '}
+        <Label
+          value="AA count"
+          angle="-90"
+          position="insideLeft"
+        ></Label>
+      </YAxis>
+      <Tooltip />
+      <CartesianGrid strokeDasharray={3} />
+    </BarChart>
+  );
 
   return (
     <div
@@ -74,8 +111,18 @@ export const Translate = () => {
               <div
                 aria-label="protein view toggle"
                 className="button"
-                onClick={() => setOutFormat(outFormat === 'threeLetter' ? 'oneLetter' : 'threeLetter'  )}>
-                <p className="hidden md:block">  Show {letterSwitch.toLowerCase()} code  </p>
+                onClick={() =>
+                  setOutFormat(
+                    outFormat === 'threeLetter'
+                      ? 'oneLetter'
+                      : 'threeLetter'
+                  )
+                }
+              >
+                <p className="hidden md:block">
+                  {' '}
+                  Show {letterSwitch.toLowerCase()} code{' '}
+                </p>
                 <p className="md:hidden">{letterSwitch}</p>
               </div>
             </div>
@@ -84,9 +131,7 @@ export const Translate = () => {
               className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
               onChange={updateSpacer}
             >
-              <option defaultValue={spacer}>
-                Spacer
-              </option>
+              <option defaultValue={spacer}>Spacer</option>
               {listSpacerOptions}
             </select>
           </div>
@@ -98,23 +143,25 @@ export const Translate = () => {
           {protein}
         </div>
       </div>
+
+      <div className="border border-red-400 columns-2">
+        <container>
+          <p className="text-center">Chart title</p>
+
+          {proteinBar}
+        </container>
+        <p>
+          - Add button on/near chart to switch between counts and
+          ratio
+        </p>
+        <p>- Show stats here: resi counts/freq, MW, pI</p>
+        <p>- Add tryptic digest option</p>
+        <p>
+          - Split these out into protein tools component, accessable
+          via this page and protein tools page
+        </p>
+        <p>- tests!</p>
+      </div>
     </div>
   );
 };
-
-/* <p>Spacer
-            <Select id="#spacer" className="p-1 text-sm border rounded dropdown-toggle border-slate-600 bg-mimosa" onChange={updateSpacer} options={spacerOptions} defaultValue={spacerOptions[4]} value={spacerOptions.value}/> </p>*/
-/* 
-<select
-              aria-label="spacer toggle"
-              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
-              onChange={updateSpacer}
-            >
-              <option defaultValue={spacer}>
-                Spacer
-              </option>
-              <option value="-">hyphen (-) </option>
-              <option value=".">dot (.)</option>
-              <option value=" ">space ( )</option>
-              <option value="">no space ( )</option>
-            </select>*/

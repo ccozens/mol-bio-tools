@@ -9,11 +9,11 @@ export const ReverseComplementDNA = () => {
   };
 
   const handleClick = () => {
-    setInput("");
+    if (input === 'ATGCAA') 
+    {setInput('')};
   }
 
   const checkedInput = checkInput(input);
-
   const revComp = reverseComplementDNA(checkedInput);
 
   return (
@@ -33,7 +33,9 @@ export const ReverseComplementDNA = () => {
         </div>
         <div className="hidden p-2 text-lg md:block">Reverse complement will show here:</div>
         <div className="p-2 text-lg md:hidden ">Reverse complement:</div>
-        <div id="outputBox" className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std">{revComp}</div>
+        <div id="outputBox" className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std">
+          {revComp}
+          </div>
       </div>
     </div>
   );

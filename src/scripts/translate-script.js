@@ -148,7 +148,7 @@ const checkForTriplets = (dna) => {
 
 const translateDna = (dna, outFormat, proteinJoin) => {
   let protein = [];
-  if (dna === 'Non-DNA character entered, please enter ATCG only') { return dna } else {
+  if (dna.includes('Non-DNA character entered, please enter ATCG only')) { return dna } else {
   if (checkForTriplets(dna) === false) {
     return 'DNA is not in triplets - please input sequence with complete triplets.' }
    else {
