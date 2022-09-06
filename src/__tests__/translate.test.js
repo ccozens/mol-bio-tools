@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-import { LineChart, Line } from 'recharts';
+import { BarChart, Bar } from 'recharts';
 // import modules to test
 import { Translate } from '../components/translate';
 
@@ -56,6 +56,13 @@ describe('transcribe functionality', () => {
     findByText('Show three letter code');
     // test protein changes
     findByText('VIYEQITRDL');
+    // switch back other way
+    await user.click(letterSelectorButton)
+    // test button changes
+    findByText('Show one letter code');
+    // test protein changes
+    findByText('VIYEQITRDL');
+    
  });
 
  test('clicking spacer toggle updates protein view', async () => {
@@ -70,3 +77,4 @@ describe('transcribe functionality', () => {
 });
 });
 
+// tests for charts?
