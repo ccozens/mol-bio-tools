@@ -2,12 +2,13 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-import { BarChart, Bar } from 'recharts';
+import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
 import { Translate } from '../components/translate';
 
 
 describe('transcribe functionality', () => {
+  
   
   test('correct default text shown', () => {
     const { getByText } = render(<Translate />);

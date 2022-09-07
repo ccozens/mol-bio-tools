@@ -1,7 +1,8 @@
-import { render, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from '../App';
+import ResizeObserver from '../__mocks__/resizeObserver'; // needed to prevent ResizeObserver error
 
-afterEach(cleanup);
+
 
 describe ('check components render', () => {
 test('nav bar renders', () => {
