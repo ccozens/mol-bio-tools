@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 // import modules to test
 import { Transcribe } from '../components/transcribe';
 
@@ -11,70 +11,99 @@ describe('transcribe functionality', () => {
   
   test('correct default text shown', () => {
     // setup
-    const { getByRole, getByText} = render(<Transcribe />);
-    const txInput = getByRole('textbox', {
+    render(<Transcribe />);
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for transcribe'
     });
-
     // should display default state ('ATGCAA')
     const defaultText = 'ATGCAA'
-    getByText((txInput, defaultText));
+    expect(txInput).toHaveTextContent(defaultText);
   });
 
 
   test('input box blanks when clicked', async () => {
     // setup
-    const { getByRole, findByText} = render(<Transcribe />);
-    const txInput = getByRole('textbox', {
+    render(<Transcribe />);
+    const user = userEvent.setup();
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for transcribe'
     });
-    const user = userEvent.setup();
     // click to select
-    await user.click(txInput);
-    // should not display default text  ('ATGCAA')
-    findByText((txInput, ''));
-  })
+    user.click(txInput);
 
+    // should display default state ('ATGCAA')
+    const defaultText = 'ATGCAA'
+    await waitFor(() => {
+      expect(txInput).not.toHaveTextContent(defaultText);
+    })
+  })
+ 
   test('correct output generated', async () => {
-    const { getByRole, findByText } = render(<Transcribe />);
+    render(<Transcribe />);
     // setup
     const user = userEvent.setup();
-    const txInput = getByRole('textbox', {
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for transcribe'
     });
+    const output =  screen.getByLabelText('RNA output')
     // click to select
-    await user.click(txInput);
+    await user.click(txInput); // await needed for action to complete before next step
     // expect output box to contain correct output when type in input box
-    await user.keyboard('ATC');
-    const rna = ('AUC');
-    findByText(rna);
+    user.keyboard('GATC');
+    const rna = ('GAUC');
+    await waitFor(() => {
+      expect(output).toHaveTextContent(rna);
+    })
       });
 
   test('error if incorrect nt entered initially', async () => {
-    const { findByText, getByRole } = render(<Transcribe />);
+    render(<Transcribe />);
     // setup
     const user = userEvent.setup();
-    const txInput = getByRole('textbox', {
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for transcribe'
     });
-    
+    const output =  screen.getByLabelText('RNA output')
+
     await user.click(txInput);
     await user.keyboard((txInput, 'H'));
     const error = 'Non-DNA character entered, please enter ATCG only.';
-    findByText(error);
+    await waitFor(() => {
+      expect(output).toHaveTextContent(error);
+    });
   });
 
   test('error if incorrect nt entered after correct characters', async () => {
-    const { getByRole, getByText, findByText } = render(<Transcribe />);
+    render(<Transcribe />);
     // setup
     const user = userEvent.setup();
-    const txInput = getByRole('textbox', {
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for transcribe'
     });
+    const output =  screen.getByLabelText('RNA output')
 
     await user.click(txInput);
-    await user.keyboard('ATGCATGCH');
-    const error = 'Non-DNA character entered, please enter ATCG only.';
-    findByText(error);
-  });
+    await user.keyboard((txInput, 'H'));
+    const error = 'Non-DNA character entered, please enter ATCG only. Non-DNA characters at positions: 1';
+    await waitFor(() => {
+      expect(output).toHaveTextContent(error);
+    });
+  }); 
 });
+
+
+/*
+test('error if incorrect nt entered', async () => {
+    // setup
+    render(<Translate />);
+    const txInput = screen.getByRole('textbox', {
+      name: 'DNA input form for translate',
+    });
+    const user = userEvent.setup();
+
+    user.click(txInput);
+    user.keyboard('AGH');
+    const error = 'Non-DNA character entered, please enter ATCG only. Non-DNA characters at positions: 2';
+    expect(await screen.findByText(error)).toBeInTheDocument();
+  });
+  */

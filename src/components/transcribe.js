@@ -43,6 +43,7 @@ export const Transcribe = () => {
         <div className="p-2 text-lg ">RNA will show here:</div>
         <div
           id="outputBox"
+          aria-label="RNA output"
           className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std"
         >
           {rna}

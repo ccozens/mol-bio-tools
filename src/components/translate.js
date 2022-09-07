@@ -3,7 +3,6 @@ import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
 import { countAAsOneLetter, countAAsThreeLetter } from '../scripts/proteinBarChartCounts';
 import {
-  ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
@@ -84,8 +83,10 @@ export const Translate = () => {
   };
 
   const proteinBar = (
-    <ResponsiveContainer width={700} height={400}>
-      <BarChart data={proteinAACounts} >
+      <div className="text-center w-max">
+        {proteinChartTitle}
+      
+      <BarChart data={proteinAACounts} width={700} height={400}>
         <Bar dataKey="count" fill="#8884d8"></Bar>
         <XAxis dataKey="resi" fontSize="1rem" interval={0}>
           </XAxis>
@@ -100,7 +101,7 @@ export const Translate = () => {
         <Tooltip content={proteinChartToolTip} />
         <CartesianGrid strokeDasharray={3} />
       </BarChart>
-    </ResponsiveContainer>
+      </div>
   );
 
   return (
@@ -161,6 +162,7 @@ export const Translate = () => {
         <div
           id="outputBox"
           className="h-40 p-2 text-base border rounded border-slate-600 bg-mimosa-std"
+          aria-label="Protein output"
         >
           {protein}
         </div>
@@ -169,7 +171,7 @@ export const Translate = () => {
       <div className="flex">
         <div >
           <div className="max-w-screen-md text-center">
-            {proteinChartTitle}
+            
             {proteinBar}
           </div>
         </div>

@@ -1,81 +1,105 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
 import { Translate } from '../components/translate';
 
-
-describe('transcribe functionality', () => {
-  
+describe('transcribe functionality', () => {  
   
   test('correct default text shown', () => {
-    const { getByText } = render(<Translate />);
+    render(<Translate />);
     // should display default state ('ATGCAA')
-    getByText('GTTATCTATGAGCAGATCACCCGCGATCTG');
+    screen.getByText('GTTATCTATGAGCAGATCACCCGCGATCTG');
   });
 
   test('correct output generated', async () => {
     // setup
-    const { getByRole, findByText } = render(<Translate />);
-    const txInput = getByRole('textbox', {
+    render(<Translate />);
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for translate',
     });
+    const output = screen.getByLabelText('Protein output');
     const user = userEvent.setup();
     // click to select
     await user.click(txInput);
     // expect output box to contain correct output when type in input box
-    await user.keyboard('ATG');
+    user.keyboard('ATG');
     const protein = ('Met');
-    findByText(protein);
+    await waitFor(() => {
+      expect(output).toHaveTextContent(protein);
+    })
+   
+      });
+
+      test('error if DNA not in triplets', async () => {
+        // setup
+        render(<Translate />);
+        const txInput = screen.getByRole('textbox', {
+          name: 'DNA input form for translate',
+        });
+        const user = userEvent.setup();
+    
+        user.click(txInput);
+        user.keyboard('at');
+        const error = 'DNA is not in triplets - please input sequence with complete triplets.';
+        expect(await screen.findByText(error)).toBeInTheDocument();
       });
 
   test('error if incorrect nt entered', async () => {
     // setup
-    const { getByRole, findByText } = render(<Translate />);
-    const txInput = getByRole('textbox', {
+    render(<Translate />);
+    const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for translate',
     });
     const user = userEvent.setup();
 
     user.click(txInput);
-    user.keyboard('H');
-    const error = 'Non-DNA character entered, please enter ATCG only.';
-    findByText(error);
+    user.keyboard('AGH');
+    const error = 'Non-DNA character entered, please enter ATCG only. Non-DNA characters at positions: 2';
+    expect(await screen.findByText(error)).toBeInTheDocument();
   });
+
+
 
   test('clicking one/three letter selector flicks button', async () => {
     //setup 
-    const { getByLabelText, findByText } = render(<Translate />); 
+    render(<Translate />); 
     const user = userEvent.setup();
     
-    const letterSelectorButton = getByLabelText('protein view toggle');
+    const letterSelectorButton = screen.getByLabelText('protein view toggle');
     // interact
-    await user.click(letterSelectorButton)
+     user.click(letterSelectorButton);
     // test button changes
-    findByText('Show three letter code');
+    expect(await screen.findByText('Show one letter code')).toBeInTheDocument();
     // test protein changes
-    findByText('VIYEQITRDL');
+    expect(await screen.findByText('VIYEQITRDL')).toBeInTheDocument();
     // switch back other way
-    await user.click(letterSelectorButton)
-    // test button changes
-    findByText('Show one letter code');
-    // test protein changes
-    findByText('VIYEQITRDL');
+     user.click(letterSelectorButton);
+     // test button changes
+     expect(await screen.findByText('Show three letter code')).toBeInTheDocument();
+     // test protein changes
+     expect(await screen.findByText('ValIleTyrGluGlnIleThrArgAspLeu')).toBeInTheDocument();
     
  });
 
  test('clicking spacer toggle updates protein view', async () => {
   //setup 
-  const { getByLabelText, findByText } = render(<Translate />); 
+  render(<Translate />); 
   const user = userEvent.setup();
-  const spacerToggle = getByLabelText('spacer toggle');
+  const spacerToggle = screen.getByLabelText('spacer toggle');
   // interact
-  await user.selectOptions(spacerToggle, ['hyphen (-)']);
+  user.selectOptions(spacerToggle, ['hyphen (-)']);
   // test protein changes
-  findByText('Val-Ile-Tyr-Glu-Gln-Ile-Thr-Arg-Asp-Leu');
+  expect (await screen.findByText('Val-Ile-Tyr-Glu-Gln-Ile-Thr-Arg-Asp-Leu')).toBeInTheDocument();
 });
 });
 
-// tests for charts?
+describe('dummy resize observer test', ()=> {
+  it('returns an instance of ResizeObserver', () => {
+        // call ResizeObserver
+        const dummyResizeObserver = new ResizeObserver();
+        expect(dummyResizeObserver).toBeInstanceOf(ResizeObserver);
+     });
+});

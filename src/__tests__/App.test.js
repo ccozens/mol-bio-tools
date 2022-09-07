@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 import ResizeObserver from '../__mocks__/resizeObserver'; // needed to prevent ResizeObserver error
 
@@ -6,9 +6,9 @@ import ResizeObserver from '../__mocks__/resizeObserver'; // needed to prevent R
 
 describe ('check components render', () => {
 test('nav bar renders', () => {
+    render(< App />); 
     const expected = /dna utilities/i;
-    const { getByText } = render(< App />); 
-    expect(getByText(expected)); 
+    expect(screen.getByText(expected)).toBeInTheDocument(); 
  });
 
  test('transcribe component', () => {
@@ -16,10 +16,10 @@ test('nav bar renders', () => {
   const transcribe = 'Transcribe DNA to RNA';
   
   // render
-  const { getByText } = render(< App />)
+  render(< App />)
 
   // test
-  expect(getByText(transcribe));
+  expect(screen.getByText(transcribe)).toBeInTheDocument();
   })
 
  test('reverse complement component', () => {
@@ -27,10 +27,10 @@ test('nav bar renders', () => {
   const revComp = 'Reverse complement DNA';
 
   // render
-  const { getByText } = render(<App />)
+  render(<App />)
 
   // test
-  expect(getByText(revComp));
+  expect(screen.getByText(revComp)).toBeInTheDocument();
  })
 
  test('translate component', () => {
@@ -38,10 +38,18 @@ test('nav bar renders', () => {
   const translate = 'Translate DNA to protein';
 
   // render
-  const { getByText } = render(<App />)
+  render(<App />)
 
   // test
-  expect(getByText(translate));
+  expect(screen.getByText(translate)).toBeInTheDocument();
  })
 }
 )
+
+describe('dummy resize observer test', ()=> {
+    it('returns an instance of ResizeObserver', () => {
+          // call ResizeObserver
+          const dummyResizeObserver = new ResizeObserver();
+          expect(dummyResizeObserver).toBeInstanceOf(ResizeObserver);
+       });
+  });
