@@ -23,7 +23,7 @@ export const Transcribe = () => {
 
   return (
     <div
-      className="container gap-4 px-4 py-8 mx-auto text-2xl"
+      className="container gap-4 px-4 py-8 mx-auto text-2xl bg-orange-300 mb-3 mt-5"
       id="Transcribe"
     >
       Transcribe DNA to RNA

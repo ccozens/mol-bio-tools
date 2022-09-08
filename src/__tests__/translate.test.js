@@ -5,8 +5,9 @@ import '@testing-library/jest-dom';
 import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
 import { Translate } from '../components/translate';
+import { TrypticDigest } from '../scripts/trypticDigest';
 
-describe('transcribe functionality', () => {  
+describe('translate functionality', () => {  
   
   test('correct default text shown', () => {
     render(<Translate />);
@@ -40,11 +41,14 @@ describe('transcribe functionality', () => {
           name: 'DNA input form for translate',
         });
         const user = userEvent.setup();
+        const output = screen.getByLabelText('Protein output');
     
-        user.click(txInput);
-        user.keyboard('at');
+        await user.click(txInput);
+        await user.keyboard('at');
         const error = 'DNA is not in triplets - please input sequence with complete triplets.';
-        expect(await screen.findByText(error)).toBeInTheDocument();
+        await waitFor(() => {
+          expect(output).toHaveTextContent(error);
+        })
       });
 
   test('error if incorrect nt entered', async () => {
@@ -103,3 +107,27 @@ describe('dummy resize observer test', ()=> {
         expect(dummyResizeObserver).toBeInstanceOf(ResizeObserver);
      });
 });
+
+describe('tryptic digest functionality', () => {
+
+test('should cut after Arg/Lys', () => {
+  const mockProtein = 'VQPTPKEGRTYADYESVNEC';
+
+  const fragments = ['VQPTPK', 'EGR', 'TYADYESVNEC']
+  expect(TrypticDigest(mockProtein)).toEqual(fragments);
+});
+
+test('should not cut after ProArg/ProLys', () => {
+  const mockProtein = 'VQPTKPEGRPTYADYESVNEC';
+
+  const fragments = ['VQPTKPEGRPTYADYESVNEC']
+  expect(TrypticDigest(mockProtein)).toEqual(fragments);
+});
+
+test('should cut after multiple Arg/Lys', () => {
+  const pdb7X39 = 'GHMSHTILLVQPTKRPEGRTYADYESVNECMEGVCKMYEEHLKRMNPNSPSITYDISQLFDFIDDLADLSCLVYRADTQTYQPYNKDWIKEKIYVLLRRQAQQAGKGSSGSSGSSGSSGSSGSSGSSPGVWGAGGSLKVTILQSSDSRAFSTVPLTPV';
+
+  const fragments = ['GHMSHTILLVQPTK', 'RPEGR', 'TYADYESVNECMEGVCK', 'MYEEHLK', 'R', 'MNPNSPSITYDISQLFDFIDDLADLSCLVYR', 'ADTQTYQPYNK', 'DWIK', 'EK', 'IYVLLR', 'R', 'QAQQAGK', 'GSSGSSGSSGSSGSSGSSGSSPGVWGAGGSLK', 'VTILQSSDSR', 'AFSTVPLTPV']
+  expect(TrypticDigest(pdb7X39)).toEqual(fragments);
+});
+})

@@ -17,7 +17,7 @@ export const ReverseComplementDNA = () => {
   const revComp = reverseComplementDNA(checkedInput);
 
   return (
-    <div className="container gap-4 px-4 py-8 mx-auto text-2xl" id="Reverse complement">
+    <div className="container gap-4 px-4 py-8 mx-auto text-2xl bg-orange-300 my-3" id="Reverse complement">
       Reverse complement DNA
       <div className="columns-2">
         <div className="p-2 text-lg">Enter DNA Here:</div>

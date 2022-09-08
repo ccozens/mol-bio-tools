@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { checkInput } from '../scripts/checkDnaInput-script';
 import { translateDna } from '../scripts/translate-script';
-import { countAAsOneLetter, countAAsThreeLetter } from '../scripts/proteinBarChartCounts';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Label
-} from 'recharts';
+import { ProteinProperties } from './proteinProperties';
+import { computeMW, computeExtinctionCoefficients, computeAbs } from '../scripts/computeParameters';
+// const ProteinProperties = React.lazy(() => import('./proteinProperties'));
 
+              
 export const Translate = () => {
   // control textbox default content and updating
   const [input, setInput] = useState(
@@ -24,9 +18,9 @@ export const Translate = () => {
 
   const handleClick = (event) => {
     if (input === 'GTTATCTATGAGCAGATCACCCGCGATCTG') {
-      setInput('');
-    }
+      setInput('');}
   };
+
 
   // control protein format
   const [outFormat, setOutFormat] = useState('threeLetter');
@@ -57,57 +51,28 @@ export const Translate = () => {
   // onChange handler for protein view toggle button
   const switchOutFormat = () =>  {setOutFormat(outFormat === 'threeLetter' ? 'oneLetter' : 'threeLetter')};
   
-// check input and translate protein
-  const checkedInput = checkInput(input);
-  const protein = translateDna(checkedInput, outFormat, spacer);
-  
-  // update proteinAACounts when outFormat or protein changes
-  useEffect(() => {
-    setproteinAACounts(outFormat === 'threeLetter'  ? countAAsThreeLetter(protein) : countAAsOneLetter(protein));
-  }, [protein, outFormat]);
-  
-  
-  // protein for chart
-  const [proteinAACounts, setproteinAACounts] = useState(countAAsThreeLetter(protein));
-  const proteinChartTitle = 'Amino acid composition';
+  // check input
+  const [checkedInput, setCheckedInput] = useState(checkInput(input));
+  // update when input changes
+  useEffect(() => {setCheckedInput(checkInput(input))}, [input]);
 
-  const proteinChartToolTip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="text-base rounded -py-3 custom-tooltip bg-mimosa-light/50">
-          <p className="label">{`${label} : ${payload[0].value}`}</p>
-        </div>
-      );
-    }
-    return null;
-  };
+  // check translate protein
+  const [protein, setProtein] = useState(translateDna(checkedInput, outFormat, spacer));
+  
+  // call setProtein to update protein when checked input, outFormat or spacer changes
+    useEffect(() => {setProtein(translateDna(checkedInput, outFormat, spacer));}, [checkedInput, outFormat, spacer]);
 
-  const proteinBar = (
-      <div className="text-center w-max">
-        {proteinChartTitle}
-      
-      <BarChart data={proteinAACounts} width={700} height={400}>
-        <Bar dataKey="count" fill="#8884d8"></Bar>
-        <XAxis dataKey="resi" fontSize="1rem" interval={0}>
-          </XAxis>
-        <YAxis fontSize="1rem">
-          <Label
-            value="AA proportion"
-            angle="-90"
-            position="insideLeft"
-            fontSize="1rem"
-          ></Label>
-        </YAxis>
-        <Tooltip content={proteinChartToolTip} />
-        <CartesianGrid strokeDasharray={3} />
-      </BarChart>
-      </div>
-  );
-
+  // vars for protein parameters
+  const { protMW, proteinLength } = computeMW(protein);
+  const extinctionCoefficientCysPaired = computeExtinctionCoefficients(protein).extinctionCoefficientCysPaired;
+  const extinctionCoefficientCysReduced = computeExtinctionCoefficients(protein).extinctionCoefficientCysReduced;
+  const {absCysPaired, absCysReduced } = computeAbs(extinctionCoefficientCysPaired, extinctionCoefficientCysReduced, protMW);
+  
+  
   return (
     <div
-      className="container gap-4 px-4 py-8 mx-auto text-2xl"
-      id="Translate"
+    className="container gap-4 px-4 py-8 mx-auto text-2xl my-3 bg-orange-300"
+    id="Translate"
     >
       <p>Translate DNA to protein</p>
       <div className="columns-2">
@@ -123,7 +88,7 @@ export const Translate = () => {
             onClick={handleClick}
             type="text"
             aria-label="DNA input form for translate"
-          />
+            />
         </div>
         <div className="p-2 text-lg">
           <p className="hidden md:block">
@@ -167,24 +132,25 @@ export const Translate = () => {
           {protein}
         </div>
       </div>
+      <div className="h-48 p-2 mt-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16 ">
+        <p className="text-center text-xl w-full mx-auto">Protein parameters</p>
 
-      <div className="flex">
-        <div >
-          <div className="max-w-screen-md text-center">
-            
-            {proteinBar}
+        <div className="flex">
+      < ProteinProperties 
+              outFormat={outFormat} 
+              protein={protein}
+              />
+              <div className="grid grid-cols-3  pl-5 w-full">
+                <div className="col-span-2">Length: </div> <div>{proteinLength} amino acids </div>
+                <div className="col-span-2">MW:</div> <div > {protMW.toFixed(1)} Da </div>
+                <div className="col-span-2">Extinction coefficient (Cys paired):</div> <div > {extinctionCoefficientCysPaired.toFixed(1)} </div>
+                <div className="col-span-2">Extinction coefficient (Cys reduced):</div> <div > {extinctionCoefficientCysReduced.toFixed(1)} </div>
+                <div className="col-span-2">A280 (Cys paired):</div> <div > {absCysPaired.toFixed(3)} </div>
+                <div className="col-span-2">A280 (Cys reduced):</div> <div > {absCysReduced.toFixed(3)} </div>
+              </div>
+              </div>
           </div>
-        </div>
-        
-        <div className="">
-          <br></br>
-          text
-          blablabla
-          blablabla
-          blablabla
-          blablablablablablablablablablablablablablablablablablablablablablablabla blablablablablabla blablablablablabla blablabla blablabla  blablablablablabla blablablablablabla blablablablablabla
-        </div>
-      </div>
     </div>
   );
 };
+

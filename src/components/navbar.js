@@ -14,7 +14,7 @@ const tools = [
 const toolList = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="inline-flex p-2 m-auto rounded lg:hover:bg-coral-light hover:bg-coral-light/25 hover:text-slate-900"
+    className="inline-flex p-2 m-auto rounded lg:hover:bg-orange-300 hover:bg-orange-300/25 hover:text-slate-900"
     key={tool}
   >
     {tool}
@@ -22,7 +22,7 @@ const toolList = tools.map((tool) => (
 ));
 
 export const Navbar = () => (
-  <nav className="flex w-11/12 gap-4 p-2 mx-auto rounded bg-coral-std">
+  <nav className="flex w-11/12 gap-4 p-2 mx-auto rounded bg-orange-400">
     <img src={DNA} alt="stylised DNA" className="h-12 my-auto md:h-14"></img>
     <h1 className="my-auto text-5xl whitespace-nowrap"> DNA utilities</h1>
     
@@ -46,7 +46,7 @@ export const Navbar = () => (
    
     <div className="flex gap-2 ml-auto text-center">
       <a
-        className="p-1 rounded hover:bg-coral-light"
+        className="p-1 rounded hover:bg-orange-300"
         href="mailto:officegardenchris@gmail.com"
         target="_"
       >
@@ -58,7 +58,7 @@ export const Navbar = () => (
         <p className='hidden md:block'>Contact me</p>
       </a>
       <a
-        className="p-1 rounded hover:bg-coral-light"
+        className="p-1 rounded hover:bg-orange-300"
         href="https://github.com/ccozens/mol-bio-tools/"
         target="_"
       >
