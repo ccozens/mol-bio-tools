@@ -5,6 +5,8 @@ import '@testing-library/jest-dom';
 import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
 import { Translate } from '../components/translate';
+import { computeProteinMW } from '../scripts/computeProteinMW';
+// import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
 import { TrypticDigest } from '../scripts/trypticDigest';
 
 describe('translate functionality', () => {  
@@ -18,11 +20,11 @@ describe('translate functionality', () => {
   test('correct output generated', async () => {
     // setup
     render(<Translate />);
+    const user = userEvent.setup();
     const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for translate',
     });
-    const output = screen.getByLabelText('Protein output');
-    const user = userEvent.setup();
+    const output = screen.getByLabelText("Protein output");
     // click to select
     await user.click(txInput);
     // expect output box to contain correct output when type in input box
@@ -41,28 +43,30 @@ describe('translate functionality', () => {
           name: 'DNA input form for translate',
         });
         const user = userEvent.setup();
-        const output = screen.getByLabelText('Protein output');
-    
+        const outputBox = screen.getByLabelText('Protein output');
         await user.click(txInput);
         await user.keyboard('at');
         const error = 'DNA is not in triplets - please input sequence with complete triplets.';
         await waitFor(() => {
-          expect(output).toHaveTextContent(error);
+          expect(outputBox).toHaveTextContent(error);
         })
       });
 
   test('error if incorrect nt entered', async () => {
     // setup
     render(<Translate />);
+    const user = userEvent.setup();
     const txInput = screen.getByRole('textbox', {
       name: 'DNA input form for translate',
     });
-    const user = userEvent.setup();
+    const outputBox = screen.getByLabelText('Protein output');
 
-    user.click(txInput);
-    user.keyboard('AGH');
-    const error = 'Non-DNA character entered, please enter ATCG only. Non-DNA characters at positions: 2';
-    expect(await screen.findByText(error)).toBeInTheDocument();
+    await user.click(txInput);
+    await user.keyboard('AGH');
+    const error = 'Non-DNA character entered, please enter ATCG only. Non-DNA characters at positions: 3';
+    await waitFor(() => {
+      expect(outputBox).toHaveTextContent(error);
+    })
   });
 
 
@@ -130,4 +134,28 @@ test('should cut after multiple Arg/Lys', () => {
   const fragments = ['GHMSHTILLVQPTK', 'RPEGR', 'TYADYESVNECMEGVCK', 'MYEEHLK', 'R', 'MNPNSPSITYDISQLFDFIDDLADLSCLVYR', 'ADTQTYQPYNK', 'DWIK', 'EK', 'IYVLLR', 'R', 'QAQQAGK', 'GSSGSSGSSGSSGSSGSSGSSPGVWGAGGSLK', 'VTILQSSDSR', 'AFSTVPLTPV']
   expect(TrypticDigest(pdb7X39)).toEqual(fragments);
 });
-})
+});
+
+describe('mol weight calculations', () => {
+  test('single AAs should return correct MW + water', () => {
+    //setup 
+    const A = 71.037113805;
+    const W = 186.079313;
+    const S = 87.032028;
+    const waterMW = 18.0107946;
+
+    //test
+    expect(computeProteinMW(['A'])).toBeCloseTo(A + waterMW);
+    expect(computeProteinMW(['W'])).toBeCloseTo(W + waterMW);
+    expect(computeProteinMW(['S'])).toBeCloseTo(S + waterMW);
+});
+
+test('MW should be correct for complex protein', () => {
+    const pdb7X39Arr = Array.from('GHMSHTILLVQPTKRPEGRTYADYESVNECMEGVCKMYEEHLKRMNPNSPSITYDISQLFDFIDDLADLSCLVYRADTQTYQPYNKDWIKEKIYVLLRRQAQQAGKGSSGSSGSSGSSGSSGSSGSSPGVWGAGGSLKVTILQSSDSRAFSTVPLTPV');
+
+    expect(computeProteinMW(pdb7X39Arr)).toBeCloseTo(17171.34);
+});
+
+
+});
+

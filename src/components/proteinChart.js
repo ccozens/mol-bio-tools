@@ -13,7 +13,7 @@ import {
   countAAsThreeLetter,
 } from '../scripts/proteinBarChartCounts';
 
-export const ProteinProperties = ({ outFormat, protein }) => {
+export const ProteinChart = ({ outFormat, protein }) => {
   // update proteinAACounts when outFormat or protein changes
   useEffect(() => {
     setproteinAACounts(
@@ -47,10 +47,10 @@ export const ProteinProperties = ({ outFormat, protein }) => {
         <LabelList dataKey="count" position="top"></LabelList>
       </Bar>
 
-      <XAxis dataKey="resi" fontSize="1rem"></XAxis>
-      <YAxis fontSize="1rem">
+      <XAxis dataKey="resi" fontSize="0.9rem" stroke="black"></XAxis>
+      <YAxis fontSize="0.9rem" stroke="black">
         <Label
-          value="AA proportion"
+          value="AA ratio"
           angle="-90"
           position="insideBottomLeft"
           fontSize="1rem"
@@ -62,5 +62,5 @@ export const ProteinProperties = ({ outFormat, protein }) => {
 
  
 
-  return <div>{proteinBar}</div>;
+  return <div className="m-auto">{proteinBar}</div>;
 };

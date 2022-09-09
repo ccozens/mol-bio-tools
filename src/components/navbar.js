@@ -4,17 +4,15 @@ import GmailLogo from '../media/GmailLogo.svg';
 import DNA from '../media/dna-svgrepo-com.svg'
 
 const tools = [
-  'Transcribe',
-  'Reverse complement',
   'Translate',
-  'Primer check',
-  'Primer design',
-];
+  'Transcribe',
+  'Reverse complement'
+  ];
 
 const toolList = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="inline-flex p-2 m-auto rounded lg:hover:bg-orange-300 hover:bg-orange-300/25 hover:text-slate-900"
+    className="inline-flex p-2 m-auto rounded lg:hover:bg-orange-300/50 hover:border border-slate-200 hover:bg-orange-300/25 hover:text-slate-900"
     key={tool}
   >
     {tool}
@@ -46,7 +44,7 @@ export const Navbar = () => (
    
     <div className="flex gap-2 ml-auto text-center">
       <a
-        className="p-1 rounded hover:bg-orange-300"
+        className="p-1 rounded hover:bg-orange-300/50 hover:border border-slate-200"
         href="mailto:officegardenchris@gmail.com"
         target="_"
       >
@@ -58,7 +56,7 @@ export const Navbar = () => (
         <p className='hidden md:block'>Contact me</p>
       </a>
       <a
-        className="p-1 rounded hover:bg-orange-300"
+        className="p-1 rounded hover:bg-orange-300/50 hover:border border-slate-200"
         href="https://github.com/ccozens/mol-bio-tools/"
         target="_"
       >

@@ -1,17 +1,3 @@
-import { convertThreeToOneLetter } from './convertThreeToOneLetter';
-
-// declare global vars
-    
-
-    // blank for proteinArray
-    let proteinArray = [];
-
-    // coefficients for proteins in water measured at 280 nm
-    const extTyr = 1490;
-    const extTrp = 5500;
-    const extCys_paired = 125;
-    const extCys_reduced = 0;
-
 // AA molecular weight table
 const aaMW = {
     A: 71.037113805,
@@ -36,7 +22,25 @@ const aaMW = {
     V: 99.068414,
   };
   
-  export const computeMW = (protein) => {
+  export const computeProteinMW = (proteinArray) => {
+  // calc MW
+    let proteinMW = 0;
+    proteinArray.forEach((pos) => {
+      proteinMW += aaMW[pos];
+    });
+    const waterMW = 18.0107946;
+    let protMW = proteinMW+waterMW;
+
+    return (
+      protMW
+    );
+  };
+
+
+
+
+
+/*   const computeMW = (protein) => {
     proteinArray = protein[1].match(/[a-z]/) ? Array.from(convertThreeToOneLetter(protein)) : Array.from(protein);
     const proteinLength = proteinArray.length;
     // calc MW
@@ -51,7 +55,7 @@ const aaMW = {
 
   
   
-export const computeExtinctionCoefficients = (protein) => {
+const computeExtinctionCoefficients = (protein) => {
   // compute protein array
   proteinArray = protein[1].match(/[a-z]/) ? Array.from(convertThreeToOneLetter(protein)) : Array.from(protein);
   // blanks for AA counts
@@ -70,12 +74,29 @@ export const computeExtinctionCoefficients = (protein) => {
 
 
 
- export const computeAbs = (extinctionCoefficientCysPaired, extinctionCoefficientCysReduced, protMW) => {
+ const computeAbs = (extinctionCoefficientCysPaired, extinctionCoefficientCysReduced, protMW) => {
     let absCysPaired = extinctionCoefficientCysPaired / protMW;
     let absCysReduced = extinctionCoefficientCysReduced / protMW;
     return {absCysPaired, absCysReduced};
  }
 
+ export const ProteinParameters = ({protein}) => {
+  computeMW(protein);
+  computeExtinctionCoefficients(protein);
+  computeAbs(protein);
+  
+  return(
+    <div>
+      beep
+      <div>{ computeMW.protMW }</div>
+      <div>{ computeMW.proteinLength }</div>
+      <div>{ computeExtinctionCoefficients.extinctionCoefficientCysPaired }</div>
+      <div>{ computeExtinctionCoefficients.extinctionCoefficientCysReduced }</div>
+      <div>{ computeAbs.absCysPaired }</div>
+      <div>{ computeAbs.absCysReduced }</div>
+    </div>
+  )
+ } */
  
 /* E(Prot) = Numb(Tyr)*Ext(Tyr) + Numb(Trp)*Ext(Trp) + Numb(Cystine)*Ext(Cystine)
 

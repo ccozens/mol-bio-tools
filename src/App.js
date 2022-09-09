@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="pt-4 bg-peach-std text-slate-900">
       <Navbar />
+      <Translate />
       <Transcribe />
       <ReverseComplementDNA />
-      <Translate />
     </div>
   );
 }

@@ -82,7 +82,7 @@ export const countAAsThreeLetter = (protein) => {
         aaCountsThreeLetter[i].count++;
       }
 
-      aaCountsThreeLetter.forEach((pos) => {pos.count = pos.count/proteinArray.length})
+      aaCountsThreeLetter.forEach((pos) => {pos.count = (pos.count/proteinArray.length).toFixed(2)});
 
   return aaCountsThreeLetter;
 };
