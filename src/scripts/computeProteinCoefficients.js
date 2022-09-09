@@ -28,7 +28,9 @@ export const ComputeExtinctionCoefficients = ( {protein, outFormat} ) => {
 
   
   // call proteinMW
-  const protMW = computeProteinMW(proteinArray);
+  const [ protMW, setprotMW] = useState(0);
+  useEffect(() => {setprotMW(computeProteinMW(proteinArray))}, [proteinArray]);
+  // protMW = computeProteinMW(proteinArray);
   // calc protein length
   const proteinLength = proteinArray.length;
 
