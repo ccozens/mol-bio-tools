@@ -35,7 +35,7 @@ export const countAAsOneLetter = (protein) => {
         aaCountsSingleLetter[i].count++;
       }
   // calc ratios
-  aaCountsSingleLetter.forEach((pos) => {pos.count = pos.count/proteinArray.length})
+  aaCountsSingleLetter.forEach((pos) => {pos.count = (pos.count/proteinArray.length).toFixed(2)})
 
   return aaCountsSingleLetter;
 };

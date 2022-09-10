@@ -54,11 +54,16 @@ test('countAAsOneLetter should return number of AAs', () => {
         { resi: 'C', count: 0.046153846153846156 },
         { resi: 'Q', count: 0.06153846153846154 }
       ];
+
+      const countOneRounded = [];
+      countOne.map((item) => (countOneRounded.push({resi: item.resi, count: item.count.toFixed(2)})))
+      const countTwoRounded = [];
+      countTwo.map((item) => (countTwoRounded.push({resi: item.resi, count: item.count.toFixed(2)})))
     
     
     //test
-    expect(countAAsOneLetter(protOne)).toEqual(countOne);
-    expect(countAAsOneLetter(protTwo)).toEqual(countTwo);
+    expect(countAAsOneLetter(protOne)).toEqual(countOneRounded);
+    expect(countAAsOneLetter(protTwo)).toEqual(countTwoRounded);
 });
 
 test('countAAsThreeLetter should return ratio of AAs at each position', () => {
@@ -111,8 +116,12 @@ test('countAAsThreeLetter should return ratio of AAs at each position', () => {
         { resi: 'Gln', count: 0 }
       ];
     
-    
+      const countOneRounded = [];
+      countOne.map((item) => (countOneRounded.push({resi: item.resi, count: item.count.toFixed(2)})))
+      const countTwoRounded = [];
+      countTwo.map((item) => (countTwoRounded.push({resi: item.resi, count: item.count.toFixed(2)})))
+
     //test
-    expect(countAAsThreeLetter(protOne)).toEqual(countOne);
-    expect(countAAsThreeLetter(protTwo)).toEqual(countTwo);
+    expect(countAAsThreeLetter(protOne)).toEqual(countOneRounded);
+    expect(countAAsThreeLetter(protTwo)).toEqual(countTwoRounded);
 });
