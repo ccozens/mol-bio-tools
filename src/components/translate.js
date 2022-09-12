@@ -67,7 +67,7 @@ export const Translate = () => {
   return (
     <div
     className="container gap-4 px-4 py-8 mx-auto text-2xl my-3 bg-orange-300"
-    id="Translate"
+    id="Translate protein"
     >
       <p>Translate DNA to protein</p>
       <div className="columns-2">
