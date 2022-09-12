@@ -24,3 +24,4 @@ export const checkInput = (dna) => {
     // return dnaUpper if for loop exits successfully 
       return dnaUpper;}
 };
+

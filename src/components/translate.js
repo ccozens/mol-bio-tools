@@ -85,6 +85,7 @@ export const Translate = () => {
             aria-label="DNA input form for translate"
             />
         </div>
+
         <div className="p-2 text-lg">
           <p className="hidden md:block">
             Protein sequence will show here:
@@ -93,7 +94,7 @@ export const Translate = () => {
 
           <div
           id="outputBox"
-          className="h-40 p-2 text-base border rounded border-slate-600 bg-amber-200/50 overflow-y-auto"
+          className="h-40 p-2 mt-2 text-base border rounded border-slate-600 bg-amber-200/50 overflow-y-auto"
           aria-label="Protein output"
         >
           {protein}
