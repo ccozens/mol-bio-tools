@@ -62,5 +62,5 @@ export const ProteinChart = ({ outFormat, protein }) => {
 
  
 
-  return <div className="m-auto">{proteinBar}</div>;
+  return <div className="m-auto hidden lg:block xl:inline-flex">{proteinBar}</div>;
 };

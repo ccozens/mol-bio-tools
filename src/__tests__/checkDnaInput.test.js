@@ -11,18 +11,18 @@ test('checkInput should throw an error if any characters other than ACGT present
   const dnaError2 = 'TAAAAAAA7AAATAAAAAAAAAA';
   const dnaError3 = 'xyz';
   //expected
-
+  
   //test
   expect(checkInput(dnaError1)).toContain(
     'Non-DNA character entered, please enter ATCG only.'
-  );
-  expect(checkInput(dnaError2)).toContain(
-    'Non-DNA character entered, please enter ATCG only.'
-  );
-  expect(checkInput(dnaError3)).toContain(
-    'Non-DNA character entered, please enter ATCG only.'
-  );
-});
+    );
+    expect(checkInput(dnaError2)).toContain(
+      'Non-DNA character entered, please enter ATCG only.'
+      );
+      expect(checkInput(dnaError3)).toContain(
+        'Non-DNA character entered, please enter ATCG only.'
+        );
+      });
 
 test('checkInput should return exact input if no error', () => {
   //setup

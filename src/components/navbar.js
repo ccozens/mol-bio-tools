@@ -9,7 +9,7 @@ const tools = ['Translate', 'Transcribe', 'Reverse complement'];
 const toolListMain = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="inline-flex text-xl p-2 m-auto rounded lg:hover:bg-orange-300/50 hover:border border-slate-200  hover:text-slate-900"
+    className="inline-flex text-xl py-2 px-10 m-auto rounded lg:hover:bg-orange-300/50 hover:border border-slate-200  hover:text-slate-900"
     key={tool}
   >
     {tool}

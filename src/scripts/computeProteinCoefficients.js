@@ -49,16 +49,18 @@ export const ComputeExtinctionCoefficients = ( {protein, outFormat} ) => {
     let absCysReduced = extinctionCoefficientCysReduced / protMW;
     
     return (
-      <div className="grid grid-cols-3  pl-5 w-full">
-                <div className="col-span-2">Length: </div> <div>{proteinLength} amino acids </div>
-                <div className="col-span-2">MW:</div> <div > {protMW.toFixed(1)} Da </div>
-                <div className="col-span-2">Extinction coefficient (Cys paired):</div> <div > {extinctionCoefficientCysPaired.toFixed(1)} </div>
-                <div className="col-span-2">Extinction coefficient (Cys reduced):</div> <div > {extinctionCoefficientCysReduced.toFixed(1)} </div>
-                <div className="col-span-2">A280 (Cys paired):</div> <div > {absCysPaired.toFixed(3)} </div>
-                <div className="col-span-2">A280 (Cys reduced):</div> <div > {absCysReduced.toFixed(3)} </div>
-                <div className="col-span-3 text-sm border-t-2 border-slate-800/50">Extinction coefficients are M<sup>-1</sup> cm<sup>-1</sup> at 280 nm in water</div>
-                <div className="col-span-3 text-sm">A<sub>280</sub> = Abs 0.1% (1 g/l)</div>
-              </div>
+      <div className="place-items-center mx-auto lg:block xl:inline-flex lg:mt-4">
+          <div className="grid grid-cols-3 pl-5">
+            <div className="col-span-2 pr-1">Length: </div> <div>{proteinLength} amino acids </div>
+            <div className="col-span-2 pr-1">MW:</div> <div > {protMW.toFixed(1)} Da </div>
+            <div className="col-span-2 pr-1">Extinction coefficient (Cys paired):</div> <div > {extinctionCoefficientCysPaired.toFixed(1)} </div>
+            <div className="col-span-2 pr-1">Extinction coefficient (Cys reduced):</div> <div > {extinctionCoefficientCysReduced.toFixed(1)} </div>
+            <div className="col-span-2 pr-1">A280 (Cys paired):</div> <div > {absCysPaired.toFixed(3)} </div>
+            <div className="col-span-2 pr-1">A280 (Cys reduced):</div> <div > {absCysReduced.toFixed(3)} </div>
+            <div className="col-span-3 text-sm border-t-2 border-slate-800/50">Extinction coefficients are M<sup>-1</sup> cm<sup>-1</sup> at 280 nm in water</div>
+            <div className="col-span-3 text-sm">A<sub>280</sub> = Abs 0.1% (1 g/l)</div>
+          </div>
+      </div>
     )
 };
 

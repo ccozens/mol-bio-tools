@@ -130,10 +130,10 @@ export const Translate = () => {
         </div>
         
       </div>
-      <div className="h-60 p-2 mt-2 text-base border rounded border-slate-600 bg-amber-200/50 min-h-16 ">
+      <div className="xl:h-60 p-2 mt-2 text-base border rounded border-slate-600 bg-amber-200/50 min-h-16 ">
         <p className="text-center text-xl w-full mx-auto">Protein parameters</p>
 
-        <div className="flex">
+        <div className="flex lg:flex-wrap">
             <ProteinChart
               protein={protein}
               outFormat={outFormat} 
