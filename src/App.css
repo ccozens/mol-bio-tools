@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* css only used where Tailwind does not have options*/
 
-
-/* overflow-wrap: anywhere wraps text without breaking lines - not an option in Tailwind */
-#inputBox, #outputBox {
-    overflow-wrap: anywhere;
+/* output boxes wrap without breaking string */
+ #outputBox {
+   overflow-wrap: anywhere;
 }
 
-
+/* show navbar dropdown items on hover
+*/
+#dropdown:hover #dropdown-menu {
+  display: block;
+}

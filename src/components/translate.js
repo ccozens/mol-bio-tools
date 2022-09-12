@@ -74,10 +74,10 @@ export const Translate = () => {
         <div className="p-2 text-lg">
           <p>Enter DNA Here:</p>
         </div>
-        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16">
+        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-amber-200/50 min-h-16">
           <textarea
             id="inputBox"
-            className="w-full h-full p-2 bg-mimosa-std"
+            className="w-full h-full p-2 bg-transparent overflow-y-auto"
             value={input}
             onChange={handleTextChange}
             onClick={handleClick}
@@ -91,10 +91,18 @@ export const Translate = () => {
           </p>
           <p className="md:hidden">Protein sequence:</p>
 
-          <div className="columns-2 ">
+          <div
+          id="outputBox"
+          className="h-40 p-2 text-base border rounded border-slate-600 bg-amber-200/50 overflow-y-auto"
+          aria-label="Protein output"
+        >
+          {protein}
+        </div>
+
+          <div className="columns-2 mt-1">
             <div
               id="protein view toggle"
-              className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
+              className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
             >
               <div
                 aria-label="protein view toggle"
@@ -111,23 +119,17 @@ export const Translate = () => {
             <select
               id="protein spacer toggle"
               aria-label="spacer toggle"
-              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-mimosa-std hover:bg-mimosa-light hover:border-slate-400"
+              className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
               onChange={updateSpacer}
             >
-              <option defaultValue={''}>Spacer</option>
+              <option defaultValue={''}>Toggle spacer</option>
               {listSpacerOptions}
             </select>
           </div>
         </div>
-        <div
-          id="outputBox"
-          className="h-40 p-2 text-base border rounded border-slate-600 bg-mimosa-std"
-          aria-label="Protein output"
-        >
-          {protein}
-        </div>
+        
       </div>
-      <div className="h-60 p-2 mt-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16 ">
+      <div className="h-60 p-2 mt-2 text-base border rounded border-slate-600 bg-amber-200/50 min-h-16 ">
         <p className="text-center text-xl w-full mx-auto">Protein parameters</p>
 
         <div className="flex">

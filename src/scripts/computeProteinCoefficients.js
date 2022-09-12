@@ -56,8 +56,8 @@ export const ComputeExtinctionCoefficients = ( {protein, outFormat} ) => {
                 <div className="col-span-2">Extinction coefficient (Cys reduced):</div> <div > {extinctionCoefficientCysReduced.toFixed(1)} </div>
                 <div className="col-span-2">A280 (Cys paired):</div> <div > {absCysPaired.toFixed(3)} </div>
                 <div className="col-span-2">A280 (Cys reduced):</div> <div > {absCysReduced.toFixed(3)} </div>
-                <div className="col-span-3 text-sm border-t-2 border-slate-800/50">Extinction coefficients are M-1 cm-1 at 280 nm in water</div>
-                <div className="col-span-3 text-sm">A280 = Abs 0.1% (1 g/l)</div>
+                <div className="col-span-3 text-sm border-t-2 border-slate-800/50">Extinction coefficients are M<sup>-1</sup> cm<sup>-1</sup> at 280 nm in water</div>
+                <div className="col-span-3 text-sm">A<sub>280</sub> = Abs 0.1% (1 g/l)</div>
               </div>
     )
 };

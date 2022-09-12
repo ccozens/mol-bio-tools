@@ -6,9 +6,13 @@ const findMatches = (dna) => {
   return indexes.join(', ')
 };
 
+
 export const checkInput = (dna) => {
   if (dna === '') {return ''}
-  else {// ensure input uppercase
+  else {
+    //remove any line breaks
+   dna = dna.replace(/[\r\n]/gm, '');
+    // ensure input uppercase
   const dnaUpper = dna.toUpperCase();
   // convert to array
   const dnaUpperArray = Array.from(dnaUpper);
@@ -20,5 +24,3 @@ export const checkInput = (dna) => {
     // return dnaUpper if for loop exits successfully 
       return dnaUpper;}
 };
-
-

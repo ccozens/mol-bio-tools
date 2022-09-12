@@ -7,7 +7,7 @@ import { Translate } from './components/translate';
 
 function App() {
   return (
-    <div className="pt-4 bg-peach-std text-slate-900">
+    <div className="pt-4 bg-orange-200 text-slate-900">
       <Navbar />
       <Translate />
       <Transcribe />

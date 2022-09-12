@@ -29,10 +29,10 @@ export const Transcribe = () => {
       Transcribe DNA to RNA
       <div className="columns-2">
         <div className="p-2 text-lg">Enter DNA Here:</div>
-        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std min-h-16 ">
+        <div className="h-48 p-2 text-base border rounded border-slate-600 bg-amber-200/50 min-h-16">
           <textarea
             id="inputBox"
-            className="w-full h-full p-2 bg-mimosa-std"
+            className="w-full h-full p-2 bg-transparent  overflow-y-auto"
             value={input}
             onChange={handleTextChange}
             onClick={handleClick}
@@ -44,7 +44,7 @@ export const Transcribe = () => {
         <div
           id="outputBox"
           aria-label="RNA output"
-          className="h-48 p-2 text-base border rounded border-slate-600 bg-mimosa-std"
+          className="h-48 p-2 text-base border rounded border-slate-600 bg-amber-200/50 overflow-y-auto"
         >
           {rna}
         </div>
