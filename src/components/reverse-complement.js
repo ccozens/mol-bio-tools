@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { checkInput } from '../scripts/checkDnaInput-script';
+import { checkDnaInput } from '../scripts/checkDnaInput';
 import { reverseComplementDNA } from '../scripts/reverse-complement-script';
 export const ReverseComplementDNA = () => {
   const [input, setInput] = useState('ATGCAA');
@@ -8,16 +8,19 @@ export const ReverseComplementDNA = () => {
     setInput(event.target.value);
   };
 
-  const handleClick = () => {
-    if (input === 'ATGCAA') 
-    {setInput('')};
-  }
+  const [count, setCount] = useState(0);
+  const handleClick = (event) => {
+    if (count === 0) {
+      setInput('');
+      setCount(count+1);
+    }
+  };
 
-  const checkedInput = checkInput(input);
+  const checkedInput = checkDnaInput(input);
   const revComp = reverseComplementDNA(checkedInput);
 
   return (
-    <div className="container gap-4 px-4 py-8 mx-auto text-2xl bg-orange-300 my-3" id="Reverse complement">
+    <div className="container gap-4 px-4 py-6 scroll-mt-20 mx-auto text-2xl bg-orange-300 my-5" id="Reverse complement">
       Reverse complement DNA
       <div className="columns-2">
         <div className="p-2 text-lg">Enter DNA Here:</div>

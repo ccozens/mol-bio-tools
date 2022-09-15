@@ -7,7 +7,7 @@ const findMatches = (dna) => {
 };
 
 
-export const checkInput = (dna) => {
+export const checkDnaInput = (dna) => {
   if (dna === '') {return ''}
   else {
     //remove any line breaks

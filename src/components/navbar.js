@@ -5,7 +5,9 @@ import GmailLogo from '../media/GmailLogo.svg';
 import DNA from '../media/dna-svgrepo-com.svg';
 
 const tools = [
+  'Analyse protein',
   'Translate protein',
+  'Reformat protein',
   'Transcribe',
   'Reverse complement',
 ];
@@ -13,7 +15,7 @@ const tools = [
 const toolListMain = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="inline-flex text-xl py-2 px-4 m-auto rounded hover:bg-orange-300/50 hover:border border-slate-200  hover:text-slate-900"
+    className="inline-flex text-xl py-2 px-3 m-auto rounded hover:bg-orange-300/50 hover:border border-slate-200  hover:text-slate-900"
     key={tool}
   >
     {tool}
@@ -31,14 +33,14 @@ const toolListDropdown = tools.map((tool) => (
 ));
 
 export const Navbar = () => (
-  <nav className="flex gap-3 p-2 mx-auto rounded bg-orange-400 w-full sticky top-0">
+  <nav className="flex gap-3 p-2 mx-auto bg-orange-400 w-full sticky top-0 z-10">
     <img
       src={DNA}
       alt="stylised DNA"
       className="h-12 my-auto lg:h-14"
     ></img>
     <h1 className="my-auto text-5xl whitespace-nowrap">
-      DNA utilities
+      <a href="#top">DNA utilities</a>
     </h1>
 
     <ul className="hidden p-2 m-auto text-lg xl:block">

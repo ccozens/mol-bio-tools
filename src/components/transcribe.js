@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { checkInput } from '../scripts/checkDnaInput-script';
+import { checkDnaInput } from '../scripts/checkDnaInput';
 import { transcribe } from '../scripts/transcribe-script';
 
 export const Transcribe = () => {
@@ -11,19 +11,21 @@ export const Transcribe = () => {
   };
 
   
-  const handleClick = () => {
-    if (input === 'ATGCAA') {
+  const [count, setCount] = useState(0);
+  const handleClick = (event) => {
+    if (count === 0) {
       setInput('');
+      setCount(count+1);
     }
   };
 
-  const checkedInput = checkInput(input);
+  const checkedInput = checkDnaInput(input);
   const rna = transcribe(checkedInput);  
 
 
   return (
     <div
-      className="container gap-4 px-4 py-8 mx-auto text-2xl bg-orange-300 mb-3 mt-5"
+      className="container px-4 py-6 scroll-mt-20 mx-auto text-2xl bg-orange-300 my-5"
       id="Transcribe"
     >
       Transcribe DNA to RNA

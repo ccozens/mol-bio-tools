@@ -10,14 +10,18 @@ import { computeProteinMW } from '../scripts/computeProteinMW';
 import { TrypticDigest } from '../scripts/trypticDigest';
 
 describe('translate functionality', () => {  
-  
   test('correct default text shown', () => {
     render(<Translate />);
-    // should display default state ('ATGCAA')
-    screen.getByText('GTTATCTATGAGCAGATCACCCGCGATCTG');
+    const txInput = screen.getByRole('textbox', {
+      name: 'DNA input form for translate',
+    });
+    // should display default state 
+    const tgo = 'ATGATCCTCGATACAGACTACATAACTGAGGATGGAAAGCCCGTCATCAGGATCTTCAAGAAGGAGAACGGCGAGTTCAAAATAGACTACGACAGAAACTTTGAGCCATACATCTACGCGCTCTTGAAGGACGACTCTGCGATTGAGGACGTCAAGAAGATAACTGCCGAGAGGCACGGCACTACCGTTAGGGTTGTCAGGGCCGAGAAAGTGAAGAAGAAGTTCCTAGGCAGGCCGATAGAGGTCTGGAAGCTCTACTTCACTCACCCCCAGGACGTTCCCGCAATCAGGGACAAGATAAAGGAGCATCCTGCCGTTGTGGACATCTACGAGTACGACATCCCCTTCGCGAAGCGCTACCTCATAGACAAAGGCTTAATCCCGATGGAGGGCGACGAGGAACTTAAGATGCTCGCCTTCGACATCGAGACGCTCTATCACGAGGGCGAGGAGTTCGCCGAAGGGCCTATCCTGATGATAAGCTACGCCGACGAGGAAGGGGCGCGCGTTATTACCTGGAAGAATATCGACCTTCCCTATGTCGACGTCGTTTCCACCGAGAAGGAGATGAT';
+    expect(txInput).toHaveTextContent(tgo);
   });
 
-  test('correct output generated', async () => {
+
+   test('correct output generated', async () => {
     // setup
     render(<Translate />);
     const user = userEvent.setup();
@@ -34,9 +38,9 @@ describe('translate functionality', () => {
       expect(output).toHaveTextContent(protein);
     })
    
-      });
+      }); 
 
-      test('error if DNA not in triplets', async () => {
+       test('error if DNA not in triplets', async () => {
         // setup
         render(<Translate />);
         const txInput = screen.getByRole('textbox', {
@@ -49,10 +53,10 @@ describe('translate functionality', () => {
         const error = 'DNA is not in triplets - please input sequence with complete triplets.';
         await waitFor(() => {
           expect(outputBox).toHaveTextContent(error);
-        })
-      });
+        });
+      }); 
 
-  test('error if incorrect nt entered', async () => {
+   test('error if incorrect nt entered', async () => {
     // setup
     render(<Translate />);
     const user = userEvent.setup();
@@ -67,52 +71,60 @@ describe('translate functionality', () => {
     await waitFor(() => {
       expect(outputBox).toHaveTextContent(error);
     })
-  });
+  }); 
 
 
 
-  test('clicking one/three letter selector flicks button', async () => {
+   test('clicking one/three letter selector flicks button', async () => {
     //setup 
     render(<Translate />); 
     const user = userEvent.setup();
-    
+    const threeLetter = 'MetIleLeuAspThrAspTyrIleThrGluAspGlyLysProValIleArgIlePheLysLysGluAsnGlyGluPheLysIleAspTyrAspArgAsnPheGluProTyrIleTyrAlaLeuLeuLysAspAspSerAlaIleGluAspValLysLysIleThrAlaGluArgHisGlyThrThrValArgValValArgAlaGluLysValLysLysLysPheLeuGlyArgProIleGluValTrpLysLeuTyrPheThrHisProGlnAspValProAlaIleArgAspLysIleLysGluHisProAlaValValAspIleTyrGluTyrAspIleProPheAlaLysArgTyrLeuIleAspLysGlyLeuIleProMetGluGlyAspGluGluLeuLysMetLeuAlaPheAspIleGluThrLeuTyrHisGluGlyGluGluPheAlaGluGlyProIleLeuMetIleSerTyrAlaAspGluGluGlyAlaArgValIleThrTrpLysAsnIleAspLeuProTyrValAspValValSerThrGluLysGluMetIle';
+
+    const oneLetter = 'MILDTDYITEDGKPVIRIFKKENGEFKIDYDRNFEPYIYALLKDDSAIEDVKKITAERHGTTVRVVRAEKVKKKFLGRPIEVWKLYFTHPQDVPAIRDKIKEHPAVVDIYEYDIPFAKRYLIDKGLIPMEGDEELKMLAFDIETLYHEGEEFAEGPILMISYADEEGARVITWKNIDLPYVDVVSTEKEM'
+    const outputBox = screen.getByLabelText('Protein output');
     const letterSelectorButton = screen.getByLabelText('protein view toggle');
     // interact
      user.click(letterSelectorButton);
     // test button changes
     expect(await screen.findByText('Show one letter code')).toBeInTheDocument();
     // test protein changes
-    expect(await screen.findByText('VIYEQITRDL')).toBeInTheDocument();
-    // switch back other way
+    await waitFor(() => {
+      expect(outputBox).toHaveTextContent(oneLetter);
+    })// switch back other way
      user.click(letterSelectorButton);
      // test button changes
      expect(await screen.findByText('Show three letter code')).toBeInTheDocument();
      // test protein changes
-     expect(await screen.findByText('ValIleTyrGluGlnIleThrArgAspLeu')).toBeInTheDocument();
-    
- });
+     await waitFor(() => {
+      expect(outputBox).toHaveTextContent(threeLetter);
+    })
+ }); 
 
- test('clicking spacer toggle updates protein view', async () => {
+  test('clicking spacer toggle updates protein view', async () => {
   //setup 
   render(<Translate />); 
   const user = userEvent.setup();
+  const outputBox = screen.getByLabelText('Protein output');
   const spacerToggle = screen.getByLabelText('spacer toggle');
   // interact
   user.selectOptions(spacerToggle, ['hyphen (-)']);
   // test protein changes
-  expect (await screen.findByText('Val-Ile-Tyr-Glu-Gln-Ile-Thr-Arg-Asp-Leu')).toBeInTheDocument();
-});
-});
+  const expected = 'Met-Ile-Leu-Asp-Thr-Asp-Tyr-Ile-Thr-Glu-Asp-Gly-Lys-Pro-Val-Ile-Arg-Ile';
+  await waitFor(() => {
+    expect(outputBox).toHaveTextContent(expected);
+  })
+}); 
 
-describe('dummy resize observer test', ()=> {
+ describe('dummy resize observer test', ()=> {
   it('returns an instance of ResizeObserver', () => {
         // call ResizeObserver
         const dummyResizeObserver = new ResizeObserver();
         expect(dummyResizeObserver).toBeInstanceOf(ResizeObserver);
      });
-});
+}); 
 
-describe('tryptic digest functionality', () => {
+ describe('tryptic digest functionality', () => {
 
 test('should cut after Arg/Lys', () => {
   const mockProtein = 'VQPTPKEGRTYADYESVNEC';
@@ -134,9 +146,9 @@ test('should cut after multiple Arg/Lys', () => {
   const fragments = ['GHMSHTILLVQPTK', 'RPEGR', 'TYADYESVNECMEGVCK', 'MYEEHLK', 'R', 'MNPNSPSITYDISQLFDFIDDLADLSCLVYR', 'ADTQTYQPYNK', 'DWIK', 'EK', 'IYVLLR', 'R', 'QAQQAGK', 'GSSGSSGSSGSSGSSGSSGSSPGVWGAGGSLK', 'VTILQSSDSR', 'AFSTVPLTPV']
   expect(TrypticDigest(pdb7X39)).toEqual(fragments);
 });
-});
+}); 
 
-describe('mol weight calculations', () => {
+ describe('mol weight calculations', () => {
   test('single AAs should return correct MW + water', () => {
     //setup 
     const A = 71.037113805;
@@ -148,14 +160,11 @@ describe('mol weight calculations', () => {
     expect(computeProteinMW(['A'])).toBeCloseTo(A + waterMW);
     expect(computeProteinMW(['W'])).toBeCloseTo(W + waterMW);
     expect(computeProteinMW(['S'])).toBeCloseTo(S + waterMW);
-});
+    });
 
 test('MW should be correct for complex protein', () => {
     const pdb7X39Arr = Array.from('GHMSHTILLVQPTKRPEGRTYADYESVNECMEGVCKMYEEHLKRMNPNSPSITYDISQLFDFIDDLADLSCLVYRADTQTYQPYNKDWIKEKIYVLLRRQAQQAGKGSSGSSGSSGSSGSSGSSGSSPGVWGAGGSLKVTILQSSDSRAFSTVPLTPV');
 
     expect(computeProteinMW(pdb7X39Arr)).toBeCloseTo(17171.34);
-});
-
-
-});
-
+    });
+})})
