@@ -7,7 +7,7 @@ import ResizeObserver from '../__mocks__/resizeObserver'; // needed to prevent R
 describe ('check components render', () => {
 test('nav bar renders', () => {
     render(< App />); 
-    const expected = /dna utilities/i;
+    const expected = /MolBioTools/i;
     expect(screen.getByText(expected)).toBeInTheDocument(); 
  });
 

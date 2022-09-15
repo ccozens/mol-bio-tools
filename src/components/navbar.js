@@ -40,7 +40,7 @@ export const Navbar = () => (
       className="h-12 my-auto lg:h-14"
     ></img>
     <h1 className="my-auto text-5xl whitespace-nowrap">
-      <a href="#top">DNA utilities</a>
+      <a href="#top">MolBioTools</a>
     </h1>
 
     <ul className="hidden p-2 m-auto text-lg xl:block">
