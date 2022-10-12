@@ -4,14 +4,16 @@
 # Welcome to molbiotools
 
 <h3 align="center">
-<a href="https://creative-cocada-575991.netlify.app/" >Live site here</a>
+<a href="https://creative-cocada-575991.netlify.app/">
+Live site here
+</a>
 </h3>
 
-This repo is what happens when a molecular biologist learns web development - you start building some tools you wish you'd been able to use for the last decade or so.
+This repo is what happens when a molecular biologist learns web development - you start building some tools you wish you'd been able to use for the last decade or so.  This was my first website, build with React (CRA), JavaScript and Tailwind. On my todo is a significant refactor as its really not DRY, and I'd prefer it in TS. None of that impacts functionality for any molecular biologists out there.
 
 
 ## General features
-Partly, this is another molecular biology tooling site. I've built in a range of features that I've wanted for ages and never found, for example:
+In part, this is *another* molecular biology tooling site. That said, I've built in a range of features that I've wanted for ages and never found, for example:
 
 - no submit buttons, no changing page: enter your DNA/protein and analysis appears right next to it, in real time.
 - new line characters automatically removed, so multi-line entries get parsed as a single string. I have spent years removing line breaks from [UniProt](https://www.uniprot.org/) / [NCBI entrez gene](https://www.ncbi.nlm.nih.gov/gene) to analyse them and it drove me nuts.

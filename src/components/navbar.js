@@ -3,6 +3,7 @@ import menuIcon from '../media/menuIcon.svg';
 import GitHubLogo from '../media/GitHubLogo.svg';
 import GmailLogo from '../media/GmailLogo.svg';
 import DNA from '../media/dna-svgrepo-com.svg';
+import { Link } from 'react-router-dom';
 
 const tools = [
   'Analyse protein',
@@ -15,7 +16,7 @@ const tools = [
 const toolListMain = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="inline-flex text-xl py-2 px-3 m-auto rounded hover:bg-orange-300/50 hover:border border-slate-200  hover:text-slate-900"
+    className="inline-flex text-xl py-2 px-3 m-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200  hover:text-slate-900"
     key={tool}
   >
     {tool}
@@ -25,7 +26,7 @@ const toolListMain = tools.map((tool) => (
 const toolListDropdown = tools.map((tool) => (
   <a
     href={`/#${tool}`}
-    className="block p-2 m-auto rounded hover:border border-slate-200 hover:bg-orange-300 hover:text-slate-900"
+    className="block p-2 m-auto rounded hover:outline outline-slate-200 hover:bg-orange-300 hover:text-slate-900"
     key={tool}
   >
     {tool}
@@ -37,7 +38,7 @@ export const Navbar = () => (
     <img
       src={DNA}
       alt="stylised DNA"
-      className="h-12 my-auto lg:h-14"
+      className="h-12 w-12 my-auto lg:h-14 lg:w-14"
     ></img>
     <h1 className="my-auto text-5xl whitespace-nowrap">
       <a href="#top">MolBioTools</a>
@@ -48,13 +49,15 @@ export const Navbar = () => (
     </ul>
 
     <div className="flex gap-3 ml-auto text-center">
-      
-      <div id="dropdown" className="p-1 rounded hover:bg-orange-300/50 hover:border border-slate-200 m-auto xl:hidden">
+      <div
+        id="dropdown"
+        className="p-1 rounded hover:bg-orange-300/50 hover:outline outline-slate-200 m-auto xl:hidden"
+      >
         <button className="m-auto bg-transparent">
           <img
             src={menuIcon}
             alt="Dropdown menu icon"
-            className="h-12 m-auto"
+            className="h-12 w-12 m-auto"
           ></img>
         </button>
 
@@ -66,27 +69,26 @@ export const Navbar = () => (
         </ul>
       </div>
 
-      <a
-        className="p-1 rounded hover:bg-orange-300/50 hover:border border-slate-200"
-        href="mailto:officegardenchris@gmail.com"
-        target="_"
+      <Link
+        className="p-1 rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
+        to="/contact"
       >
         <img
           src={GmailLogo}
           alt="Gmail logo"
-          className="h-12 m-auto lg:h-8"
+          className="h-12 w-12 m-auto lg:h-8 lg:w-8"
         ></img>
         <p className="hidden lg:block">Contact me</p>
-      </a>
+      </Link>
       <a
-        className="p-1 rounded hover:bg-orange-300/50 hover:border border-slate-200"
+        className="p-1 rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
         href="https://github.com/ccozens/mol-bio-tools/"
         target="_"
       >
         <img
           src={GitHubLogo}
           alt="GitHub logo"
-          className="h-12 m-auto lg:h-8"
+          className="h-12 w-12 m-auto lg:h-8 lg:w-8"
         ></img>
         <p className="hidden lg:block">Source code</p>
       </a>

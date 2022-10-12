@@ -1,22 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import { Home } from '../components/home';
 import ResizeObserver from '../__mocks__/resizeObserver'; // needed to prevent ResizeObserver error
 
 
-
 describe ('check components render', () => {
-test('nav bar renders', () => {
-    render(< App />); 
-    const expected = /MolBioTools/i;
-    expect(screen.getByText(expected)).toBeInTheDocument(); 
- });
+
 
  test('transcribe component', () => {
   // expected
   const transcribe = 'Transcribe DNA to RNA';
   
   // render
-  render(< App />)
+  render(< Home />)
 
   // test
   expect(screen.getByText(transcribe)).toBeInTheDocument();
@@ -27,7 +22,7 @@ test('nav bar renders', () => {
   const revComp = 'Reverse complement DNA';
 
   // render
-  render(<App />)
+  render(<Home />)
 
   // test
   expect(screen.getByText(revComp)).toBeInTheDocument();
@@ -38,7 +33,7 @@ test('nav bar renders', () => {
   const translate = 'Translate DNA to protein';
 
   // render
-  render(<App />)
+  render(<Home />)
 
   // test
   expect(screen.getByText(translate)).toBeInTheDocument();

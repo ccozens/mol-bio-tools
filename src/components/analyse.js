@@ -35,17 +35,7 @@ export const Analyse = () => {
   }, [checkedProtein]);
 
   
-  /* 
-  <div
-              id="protein view toggle"
-              className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
-            >
-              <div
-                aria-label="protein view toggle"
-                className="button"
-                onClick={switchOutFormat}
-              >
-              */
+
   return (
     <div
       className="container gap-4 px-4 py-6 scroll-mt-20 mx-auto text-2xl my-5 bg-orange-300"

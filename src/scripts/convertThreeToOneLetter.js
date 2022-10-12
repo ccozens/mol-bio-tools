@@ -2,7 +2,7 @@ export const convertThreeToOneLetter = (protein) => {
   const aaLookupTable = {
     Ala: 'A',
     Arg: 'R',
-    Asn: ' N',
+    Asn: 'N',
     Asp: 'D',
     Cys: 'C',
     Glu: 'E',
@@ -20,12 +20,18 @@ export const convertThreeToOneLetter = (protein) => {
     Trp: 'W',
     Tyr: 'Y',
     Val: 'V',
-  };
+    };
 
-  // create proteinArray in three letter slices
+    // strip spacers and remove * from C-term if present
+    const proteinStarRemoved =
+    protein.at(-1) === '*'
+    ? protein.replace(/[- .]/g, '').slice(0, -1)
+    : protein.replace(/[- .]/g, '');
+    
+    // create proteinArray in three character slices
   let proteinArray = [];
-  for (let i = 0; i < protein.length; i += 3) {
-    proteinArray.push(protein.substring(i, i + 3));
+  for (let i = 0; i < proteinStarRemoved.length; i += 3) {
+    proteinArray.push(proteinStarRemoved.substring(i, i + 3));
   }
 
   const oneLetterArr = [];

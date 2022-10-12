@@ -22,6 +22,10 @@
 # test file
 src/scripts/playground.js
 
+# sanity folder and token for localhost dev server 
+/mol-bio-tools
+src/client.js
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
