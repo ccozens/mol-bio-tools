@@ -2,11 +2,7 @@
 
 
 # Welcome to molbiotools
-
-
-<a align="center" href="https://creative-cocada-575991.netlify.app/">
-**Live site here**
-</a>
+### &emsp;[Live site here](https://creative-cocada-575991.netlify.app/)
 
 
 This repo is what happens when a molecular biologist learns web development - you start building some tools you wish you'd been able to use for the last decade or so.  This was my first website, build with React (CRA), JavaScript and Tailwind. On my todo is a significant refactor as its really not DRY, and I'd prefer it in TS. None of that impacts functionality for any molecular biologists out there.
