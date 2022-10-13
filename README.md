@@ -41,8 +41,8 @@ Basically, changes T -> U.
 Returns reverse complement of your strand (ATGCAA -> TTGCAT).
 
 
-## Additions
-I've a bunch of thoughts I could add to this, so do get in touch if you've requests (however you like - via Github, the form on the site, [LinkedIn](https://www.linkedin.com/in/chris-cozens-b2883a45/)) or if prioritising any of these would be good. Also, do get in touch with problems/typos.
+## Questions / comments
+Please get in touch with feedback / requests. This was my first JS project, so I'd love feedback, and I want it to be useful, so happy to add featues. I've a list of possibles, so do let me know if there are any I could prioritise / you'd like to help you (however you like - via Github, [email](mailto: officechrisgarden@gmail.com), [LinkedIn](https://www.linkedin.com/in/chris-cozens-b2883a45/)). Also, do get in touch with problems/typos. 
 
 - primer analysis
 	- melting temp calculator
@@ -59,7 +59,8 @@ I've a bunch of thoughts I could add to this, so do get in touch if you've reque
 This was all written on VSCode in React/JS.
 Tests are written with [jest](https://jestjs.io/) and [React testing library](https://testing-library.com/docs/react-testing-library/intro/) and [jest-dom](https://github.com/testing-library/jest-dom). Its hosted on netlify, deployed directly from this github repo.
 The favicon is from [svgrepo](https://www.pngrepo.com/svg/51923/dna), and I followed [these instructions](https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/ ) on using svg as favicon.
+I've a plan to refactor this substantially, as I learned to much doing it that I'd set about it differently (and with much more order) if I started again (probably in Typescript). However, for now I'm moving on to other things as I'd prefer to ship something that works, get some user feedback, and work on another project before returning to this one.
 
-	
+
 ### What is the protein?
 If anybody is wondering, the demo protein is Tgo, a thermophillic DNA polymerase I worked on for most of my 10 year academic career. [This paper](https://www.pnas.org/doi/abs/10.1073/pnas.1120964109) is my PhD work - it was accepted just after I'd submitted my thesis.

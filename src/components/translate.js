@@ -105,13 +105,12 @@ export const Translate = () => {
           {protein}
         </div>
 
-          <div className="columns-2 mt-1">
+          <div className="hidden sm:block columns-2 mt-1">
             <div
-              id="protein view toggle"
               className="p-1 text-sm border rounded cursor-pointer switch border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
             >
               <div
-                aria-label="protein view toggle"
+                aria-label="protein view toggle for large screen"
                 className="button"
                 onClick={switchOutFormat}
               >
@@ -123,7 +122,6 @@ export const Translate = () => {
               </div>
             </div>
             <select
-              id="protein spacer toggle"
               aria-label="spacer toggle"
               className="p-1 text-sm border rounded w-min dropdown-toggle border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
               onChange={updateSpacer}
@@ -131,6 +129,35 @@ export const Translate = () => {
               <option defaultValue={''}>Toggle spacer</option>
               {listSpacerOptions}
             </select>
+            
+          </div>
+
+          <div className="sm:hidden flex flex-col mt-1">
+            <div
+              className="p-1 text-sm border rounded mx-auto cursor-pointer text-center switch border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
+            >
+              <div
+                aria-label="protein view toggle for small screen"
+                className="button"
+                onClick={switchOutFormat}
+              >
+                <p className="hidden md:block">
+                  {' '}
+                  Show {letterSwitch.toLowerCase()} code{' '}
+                </p>
+                <p className="md:hidden">{letterSwitch}</p>
+              </div>
+            </div>
+            <select
+              id="protein spacer toggle for small screen"
+              aria-label="spacer toggle  for small screen"
+              className="p-1 text-sm border mx-auto mt-1 rounded w-min text-center dropdown-toggle border-slate-600 bg-amber-200/50 hover:amber-200 hover:border-slate-400"
+              onChange={updateSpacer}
+            >
+              <option defaultValue={''}>Toggle spacer</option>
+              {listSpacerOptions}
+            </select>
+            
           </div>
         </div>
         

@@ -83,18 +83,20 @@ describe('translate functionality', () => {
 
     const oneLetter = 'MILDTDYITEDGKPVIRIFKKENGEFKIDYDRNFEPYIYALLKDDSAIEDVKKITAERHGTTVRVVRAEKVKKKFLGRPIEVWKLYFTHPQDVPAIRDKIKEHPAVVDIYEYDIPFAKRYLIDKGLIPMEGDEELKMLAFDIETLYHEGEEFAEGPILMISYADEEGARVITWKNIDLPYVDVVSTEKEM'
     const outputBox = screen.getByLabelText('Protein output');
-    const letterSelectorButton = screen.getByLabelText('protein view toggle');
+    const letterSelectorButton = screen.getByLabelText('protein view toggle for large screen');
     // interact
      user.click(letterSelectorButton);
     // test button changes
-    expect(await screen.findByText('Show one letter code')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(letterSelectorButton).toHaveTextContent('Show one letter code')});
     // test protein changes
     await waitFor(() => {
       expect(outputBox).toHaveTextContent(oneLetter);
     })// switch back other way
      user.click(letterSelectorButton);
      // test button changes
-     expect(await screen.findByText('Show three letter code')).toBeInTheDocument();
+     await waitFor(() => {
+      expect(letterSelectorButton).toHaveTextContent('Show three letter code')});
      // test protein changes
      await waitFor(() => {
       expect(outputBox).toHaveTextContent(threeLetter);
