@@ -92,7 +92,7 @@ export const Navbar = () => (
       </a>
       <a
         className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
-        href="https://next-profile-v4mi.vercel.app/"
+        href="https://www.chriscozens.uk/"
         target="_"
       >
         <img
