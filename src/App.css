@@ -14,3 +14,23 @@
 #dropdown:hover #dropdown-menu {
   display: block;
 }
+
+
+/* customise scrollbar */
+.scrollbar::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+.scrollbar::-webkit-scrollbar-track {
+  background: hsla(37.69999999999999, 92.1%, 70%, 0.7);
+}
+ 
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: hsla(24, 9.8%, 10%, 0.4);
+  width: 0.4em;
+  border-radius: 100vh;
+}
+
+.scrollbar::-webkit-resizer {
+  background-color: hsla(37.69999999999999, 92.1%, 70%, 0.7);
+}

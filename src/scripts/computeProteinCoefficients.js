@@ -70,7 +70,7 @@ export const ComputeExtinctionCoefficients = ({
   let absCysReduced = extinctionCoefficientCysReduced / protMW;
 
   return (
-    <div className="place-items-center mx-auto lg:block xl:inline-flex lg:mt-4">
+    <div className="place-items-center mx-auto lg:block xl:inline-flex lg:mt-4" aria-label='Computed parameters'>
       <div className="grid grid-cols-3 pl-5">
         <div className="col-span-2 pr-1">Length: </div>{' '}
         <div>{proteinLength} amino acids </div>

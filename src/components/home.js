@@ -9,7 +9,6 @@ export const Home = () => {
 
     return(
         <>
-        
           < Analyse />
           < Translate />
           < ReformatProtein />
@@ -18,12 +17,3 @@ export const Home = () => {
         </>
     )
 }
-
-
-/*
-  < Navbar />
-            < Analyse />
-            < Translate />
-            < ReformatProtein />
-            < Transcribe />
-            < ReverseComplementDNA />*/
