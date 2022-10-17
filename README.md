@@ -51,6 +51,15 @@ Please get in touch with feedback / requests. This was my first JS project, so I
 - DNA parameters
 	- gene length / GC content
 
+## Todo
+
+- add text export feature for caclulated parameters
+- add file import, eg:
+	- [React dropzone](https://blog.logrocket.com/create-drag-and-drop-component-react-dropzone/) 
+	- [HTML5 drag and drop](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+	- [HTML FileReader API](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+	- [Load data from static file NextJS](https://vercel.com/guides/loading-static-file-nextjs-api-route)
+
 ## Technical details
 This was all written on VSCode in React/JS.
 Tests are written with [jest](https://jestjs.io/) and [React testing library](https://testing-library.com/docs/react-testing-library/intro/) and [jest-dom](https://github.com/testing-library/jest-dom). Its hosted on netlify, deployed directly from this github repo.
