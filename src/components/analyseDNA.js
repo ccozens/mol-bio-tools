@@ -17,6 +17,14 @@ export const AnalyseDNA = () => {
     setNumInput(event.target.value);
   };
 
+  const [numCount, setNumCount] = useState(0);
+  const handleNumClick = (event) => {
+    if (numCount === 0) {
+      setNumInput('');
+      setNumCount(numCount + 1);
+    }
+  };
+
   const [count, setCount] = useState(0);
   const handleClick = (event) => {
     if (count === 0) {
@@ -48,7 +56,7 @@ export const AnalyseDNA = () => {
               className="w-full h-full p-2 bg-transparent"
               value={lenInput}
               onChange={handleNumChange}
-              onClick={handleClick}
+              onClick={handleNumClick}
               type="text"
               aria-label="DNA input for quick molecular weight calculation"
             />
