@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { checkDnaInput } from '../scripts/checkDnaInput';
-import { approxRnaMw, approxSsDnaMw, approxDsDnaMw, exactSsDnaMw, exactDsDnaMw, gcRatio } from '../scripts/dnaAnalysis.ts';
+import { approxDsDnaMw, exactDsDnaMw, gcRatio } from '../scripts/dnaAnalysis.ts';
 import { tgo } from '../scripts/tgo';
 
 export const AnalyseDNA = () => {
@@ -26,9 +26,9 @@ export const AnalyseDNA = () => {
   };
 
   const checkedInput = checkDnaInput(input);
-  const valueApproxSsDnaMW = approxSsDnaMw(lenInput);
+  // const valueApproxSsDnaMW = approxSsDnaMw(lenInput);
   const valueApproxDsDnaMW = approxDsDnaMw(lenInput);
-  const valueExactSsDnaMw = exactSsDnaMw(checkedInput);
+  // const valueExactSsDnaMw = exactSsDnaMw(checkedInput);
   const valueExactDsDnaMw = exactDsDnaMw(checkedInput);
   const valueGcRatio = gcRatio(checkedInput);
   
