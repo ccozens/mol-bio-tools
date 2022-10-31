@@ -10,8 +10,9 @@ const tools = [
   'Analyse protein',
   'Translate protein',
   'Reformat protein',
+  'Analyse DNA',
   'Transcribe',
-  'Reverse complement',
+  'Reverse comp',
 ];
 
 const toolListMain = tools.map((tool) => (
@@ -49,59 +50,57 @@ export const Navbar = () => (
       {toolListMain}
     </ul>
     <div className="block sm:flex">
-    <div className="flex gap-3 ml-auto text-center">
-      <div
-        id="dropdown"
-        className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200 m-auto xl:hidden"
-      >
-        <button className="m-auto bg-transparent">
-          <img
-            src={menuIcon}
-            alt="Dropdown menu icon"
-            className="h-12 w-12 m-auto"
-          ></img>
-        </button>
-
-        <ul
-          id="dropdown-menu"
-          className="hidden absolute bg-orange-400 m-3"
+      <div className="flex gap-3 ml-auto text-center">
+        <div
+          id="dropdown"
+          className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200 m-auto xl:hidden"
         >
-          {toolListDropdown}
-        </ul>
+          <button className="m-auto bg-transparent">
+            <img
+              src={menuIcon}
+              alt="Dropdown menu icon"
+              className="h-12 w-12 m-auto"
+            ></img>
+          </button>
+
+          <ul
+            id="dropdown-menu"
+            className="hidden absolute bg-orange-400 m-3"
+          >
+            {toolListDropdown}
+          </ul>
+        </div>
+
+        <Link className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200">
+          <img
+            src={GmailLogo}
+            alt="Gmail logo"
+            className="h-12 w-12 m-auto xl:h-8 xl:w-8"
+          ></img>
+        </Link>
+        <a
+          className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
+          href="mailto:officechrisgarden@gmail.com"
+          target="_"
+        >
+          <img
+            src={GitHubLogo}
+            alt="GitHub logo"
+            className="h-12 w-12 m-auto xl:h-8 xl:w-8"
+          ></img>
+        </a>
+        <a
+          className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
+          href="https://www.chriscozens.uk/"
+          target="_"
+        >
+          <img
+            src={ProfileLogo}
+            alt="Profile website favicon"
+            className="h-12 w-12 m-auto xl:h-8 xl:w-8"
+          ></img>
+        </a>
       </div>
-      
-      <Link
-        className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
-      >
-        <img
-          src={GmailLogo}
-          alt="Gmail logo"
-          className="h-12 w-12 m-auto xl:h-8 xl:w-8"
-        ></img>
-      </Link>
-      <a
-        className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
-        href="https://github.com/ccozens/mol-bio-tools/"
-        target="_"
-      >
-        <img
-          src={GitHubLogo}
-          alt="GitHub logo"
-          className="h-12 w-12 m-auto xl:h-8 xl:w-8"
-        ></img>
-      </a>
-      <a
-        className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
-        href="https://www.chriscozens.uk/"
-        target="_"
-      >
-        <img
-          src={ProfileLogo}
-          alt="Profile website favicon"
-          className="h-12 w-12 m-auto xl:h-8 xl:w-8"
-        ></img>
-      </a>
-    </div>
     </div>
   </nav>
 );
