@@ -1,3 +1,4 @@
+import { countNucleotides } from "./count-nt";
 // all numbers from Ambion: https://www.thermofisher.com/uk/en/home/references/ambion-tech-support/rna-tools-and-calculators/dna-and-rna-molecular-weights-and-conversions.html
 
 // lookuptable
@@ -56,18 +57,35 @@ export const exactSsDnaMw = (dna: string) => {
       let dnaMW = 0;
       dnaArray.forEach((pos) => {
         dnaMW += ntMW[pos];
-      });
+          });
       const phosphate = ntMW.monophosphate;
       let finalDnaMW = dnaMW+phosphate;
-  
+      
       return (
         finalDnaMW
       );
     };
 
     export const exactDsDnaMw = (dna) => {
-        let ssDnaMw = exactSsDnaMw(dna);
-        return ssDnaMw *2;
+        let dnaArray = Array.from(dna).map(char => 'd' + char); // map appends d to each nt so DNA nts lookedup
+    // calc MW
+      let dnaMW = 0;
+      dnaArray.forEach((pos) => {
+        dnaMW += ntMW[pos];
+      });
+      const phosphate = ntMW.monophosphate;
+      let finalDnaMW = (dnaMW+phosphate)*2;
+      
+      return (
+        finalDnaMW
+      );
+    }
+
+    export const gcRatio = (dna) => {
+        let ntCounts = countNucleotides(dna);
+        let gc = ntCounts.C + ntCounts.G;
+        let at = ntCounts.A + ntCounts.T;
+        return (gc/ (gc+at)).toFixed(3);
     }
 
 

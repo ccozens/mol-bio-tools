@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { checkDnaInput } from '../scripts/checkDnaInput';
-import { approxRnaMw, approxSsDnaMw, approxDsDnaMw, exactSsDnaMw, exactDsDnaMw } from '../scripts/dnaAnalysis.ts';
+import { approxRnaMw, approxSsDnaMw, approxDsDnaMw, exactSsDnaMw, exactDsDnaMw, gcRatio } from '../scripts/dnaAnalysis.ts';
+import { tgo } from '../scripts/tgo';
 
 export const AnalyseDNA = () => {
-  const [lenInput, setNumInput] = useState(1000);
-  const [input, setInput] = useState('ATGCAA');
+  const [lenInput, setNumInput] = useState(tgo.length);
+  const [input, setInput] = useState(tgo);
 
   const handleTextChange = (event) => {
     // set input to entered text
@@ -29,6 +30,7 @@ export const AnalyseDNA = () => {
   const valueApproxDsDnaMW = approxDsDnaMw(lenInput);
   const valueExactSsDnaMw = exactSsDnaMw(checkedInput);
   const valueExactDsDnaMw = exactDsDnaMw(checkedInput);
+  const valueGcRatio = gcRatio(checkedInput);
   
   return (
     <div
@@ -40,7 +42,7 @@ export const AnalyseDNA = () => {
         <div className="p-2 text-lg">
           
           Enter DNA length for approx MW:
-          <div className="h-12 p-2 text-base border rounded border-slate-600 bg-amber-200/50 min-h-16">
+          <div className="h-12 p-2 text-base border rounded border-slate-600 bg-amber-200/50 h-18">
             <textarea
               id="numInputBox"
               className="w-full h-full p-2 bg-transparent"
@@ -55,7 +57,7 @@ export const AnalyseDNA = () => {
         <div className="p-2 text-lg">
           
           Approx MW (dsDNA):
-          <div className="p-2 text-base border rounded border-slate-600 bg-amber-200/50 h-12">
+          <div className="p-2 text-base border rounded border-slate-600 bg-amber-200/50 h-18 w-40 text-center">
             
             {valueApproxDsDnaMW}
           </div>
@@ -87,10 +89,26 @@ export const AnalyseDNA = () => {
           <div
             id="outputBox"
             aria-label="DNA MW output"
-            className="h-48 p-2 text-base border rounded border-slate-600 bg-amber-200/50 overflow-y-auto scrollbar"
+            className="h-18 w-40 text-center p-2 text-base border rounded border-slate-600 bg-amber-200/50 overflow-y-auto scrollbar"
           >
-            {valueExactDsDnaMw}
+            {valueExactDsDnaMw.toFixed(3)}
           </div>
+          <div className="p-2 text-lg">
+          
+          DNA length:
+          <div className="p-2 text-base border rounded border-slate-600 bg-amber-200/50 h-18 w-40 text-center">
+            
+            {checkedInput.length}
+          </div>
+        </div>
+        <div className="p-2 text-lg">
+          
+          GC ratio:
+          <div className="p-2 text-base border rounded border-slate-600 bg-amber-200/50 h-18 w-40 text-center">
+            
+            {valueGcRatio}
+          </div>
+        </div>
         </div>
       </div>
     </div>
