@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
-import { Analyse } from '../components/analyse';
+import { AnalyseProtein } from '../components/analyseProtein';
 import { computeProteinMW } from '../scripts/computeProteinMW';
 // import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
 
@@ -12,7 +12,7 @@ import { computeProteinMW } from '../scripts/computeProteinMW';
 describe('Analyse functionality', () => {  
 
   test('correct default text shown', () => {
-    render(<Analyse />);
+    render(<AnalyseProtein />);
     // should display default state 
     const inputBox = screen.getByLabelText('Protein input form for analysis');
     const tgo = 'MILDTDYITEDGKPVIRIFKKENGEFKIDYDRNFEPYIYALLKDDSAIEDVKKITAERHGTTVRVVRAEKVKKKFLGRPIE';
@@ -21,7 +21,7 @@ describe('Analyse functionality', () => {
 
   test('correct output generated', async () => {
     // setup
-    render(<Analyse />);
+    render(<AnalyseProtein />);
     const user = userEvent.setup();
     const txInput = screen.getByRole('textbox', {
       name: 'Protein input form for analysis',
@@ -41,7 +41,7 @@ describe('Analyse functionality', () => {
 
       test('error if non-cognate AA entered', async () => {
         // setup
-        render(<Analyse />);
+        render(<AnalyseProtein />);
         const txInput = screen.getByRole('textbox', {
           name: 'Protein input form for analysis',
         });
