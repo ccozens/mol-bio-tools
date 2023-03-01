@@ -5,13 +5,7 @@ export const countNucleotides = (dna) => {
   const dnaUpper = dna.toUpperCase();
   // convert to array
   const dnaUpperArray = Array.from(dnaUpper);
-  /*
-  // check dnaUpperArray has content
-  if (dnaUpperArray.length === 0) {
-    throw Error('No input');
-  }
-  */
- 
+
   // check array is entirely composed of ACTG
   for (let nt of dnaUpperArray) {
     if (nt.match(/[^ACGT]/)) {

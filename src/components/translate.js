@@ -3,11 +3,11 @@ import { checkDnaInput } from '../scripts/checkDnaInput';
 import { translateDna } from '../scripts/translate-script';
 import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
 import { ProteinChart } from './proteinChart';
-import { tgo } from '../scripts/tgo';
+import { tgo } from '../scripts/lookupTables';
 
 export const Translate = () => {
   // control textbox default content and updating
-  const [input, setInput] = useState(tgo);
+  const [input, setInput] = useState(tgo.dna);
 
   const handleTextChange = (event) => {
     setInput(event.target.value);

@@ -1,7 +1,7 @@
 export function complementDNA(dna) {
   const dnaArray = Array.from(dna);
   let dnaComplementary = [];
-  dnaArray.map((x) => {
+  dnaArray.forEach((x) => {
     if (x === 'A') {
       dnaComplementary.push('T');
     } else if (x === 'C') {
@@ -14,13 +14,3 @@ export function complementDNA(dna) {
   });
   return dnaComplementary.join('');
 }
-
-/* // alternative - slower
-let pairs = {A:'T',T:'A',C:'G',G:'C'};
-const DNAStrand = dna => dna.replace(/./g, c => pairs[c]);
- */
-/* 
-// alternative map dict - slower
-function DNAStrand_someones(dna) { return dna.split('').map(function(v) {return {A:'T', T:'A', C:'G', G:'C'}[v];}).join('')};
-
- */

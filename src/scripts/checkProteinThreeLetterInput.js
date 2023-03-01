@@ -1,3 +1,5 @@
+import { aaThreeOneLetterNames } from './lookupTables'
+
 export const checkProteinThreeLetterInput = (input) => {
 
   if (input === '') {
@@ -11,7 +13,8 @@ export const checkProteinThreeLetterInput = (input) => {
     proteinArray.push(protein.substring(i, i + 3));
   }
  
-    const allThreeLetter = ['Ala', 'Arg', 'Asn', 'Asp', 'Cys', 'Glu', 'Gln', 'Gly', 'His', 'Ile', 'Leu', 'Lys', 'Met', 'Phe', 'Pro', 'Ser', 'Thr', 'Trp', 'Tyr', 'Val']
+    const allThreeLetter = Object.keys(aaThreeOneLetterNames);
+
     const wrongInput = proteinArray.filter((resi) => !allThreeLetter.includes(resi));
     let wrongInputPositions = [];
       for (let i in wrongInput) { wrongInputPositions.push(proteinArray.indexOf((wrongInput[i]))+1) };

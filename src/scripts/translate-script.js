@@ -1,6 +1,6 @@
 import { codonToAATableOneLetter, codonToAATableThreeLetter } from "./lookupTables";
 
-// splits input string to uppercae triplets
+// splits input string to uppercase triplets
 const dnaToArray = (dna) => {
   let tempArray = [];
   const dnaUpper = dna.toUpperCase();

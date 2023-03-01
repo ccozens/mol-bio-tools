@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { convertThreeToOneLetter } from './convertThreeToOneLetter';
 import { computeProteinMW } from './computeProteinMW';
+import { absCoefficients } from './lookupTables';
 
-// declare global vars
-
-// blank for proteinArray
-// let proteinArray = [];
+// destructure import
+const [extTyr, extTrp, extCys_paired, extCys_reduced] = [
+  absCoefficients.extTyr,
+  absCoefficients.extTrp,
+  absCoefficients.extCys_paired,
+  absCoefficients.extCys_reduced,
+];
 
 // coefficients for proteins in water measured at 280 nm
-const extTyr = 1490;
-const extTrp = 5500;
-const extCys_paired = 125;
-const extCys_reduced = 0;
 
 export const ComputeExtinctionCoefficients = ({
   protein,
   outFormat,
 }) => {
-  
   const [proteinArray, setProteinArray] = useState([]);
 
   // note regex (/[- .]/) to strip spacers from protein
@@ -70,7 +69,10 @@ export const ComputeExtinctionCoefficients = ({
   let absCysReduced = extinctionCoefficientCysReduced / protMW;
 
   return (
-    <div className="place-items-center mx-auto lg:block xl:inline-flex lg:mt-4" aria-label='Computed parameters'>
+    <div
+      className="place-items-center mx-auto lg:block xl:inline-flex lg:mt-4"
+      aria-label="Computed parameters"
+    >
       <div className="grid grid-cols-3 pl-5">
         <div className="col-span-2 pr-1">Length: </div>{' '}
         <div>{proteinLength} amino acids </div>

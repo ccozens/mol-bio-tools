@@ -4,7 +4,6 @@ import GitHubLogo from '../media/GitHubLogo.svg';
 import GmailLogo from '../media/GmailLogo.svg';
 import ProfileLogo from '../media/Profile.svg';
 import DNA from '../media/dna-svgrepo-com.svg';
-import { Link } from 'react-router-dom';
 
 const tools = [
   'Analyse protein',

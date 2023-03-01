@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { checkDnaInput } from '../scripts/checkDnaInput';
 import { approxDsDnaMw, exactDsDnaMw, gcRatio } from '../scripts/dnaAnalysis.ts';
-import { tgo } from '../scripts/tgo';
+import { tgo } from '../scripts/lookupTables';
 
 export const AnalyseDNA = () => {
-  const [lenInput, setNumInput] = useState(tgo.length);
-  const [input, setInput] = useState(tgo);
+  const [lenInput, setNumInput] = useState(tgo.dna.length);
+  const [input, setInput] = useState(tgo.dna);
 
   const handleTextChange = (event) => {
     // set input to entered text
