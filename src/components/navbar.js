@@ -71,16 +71,19 @@ export const Navbar = () => (
           </ul>
         </div>
 
-        <Link className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200">
+        <a className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
+          href="mailto:officechrisgarden@gmail.com"
+          target="_"
+        >
           <img
             src={GmailLogo}
             alt="Gmail logo"
             className="h-12 w-12 m-auto xl:h-8 xl:w-8"
           ></img>
-        </Link>
+          </a>
         <a
           className="p-1 my-auto rounded hover:bg-orange-300/50 hover:outline outline-slate-200"
-          href="mailto:officechrisgarden@gmail.com"
+          href="https://github.com/ccozens"
           target="_"
         >
           <img
