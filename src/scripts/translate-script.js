@@ -1,4 +1,4 @@
-import { codonToAATableOneLetter, codonToAATableThreeLetter } from "./codonTables";
+import { codonToAATableOneLetter, codonToAATableThreeLetter } from "./lookupTables";
 
 // splits input string to uppercae triplets
 const dnaToArray = (dna) => {

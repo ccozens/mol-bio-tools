@@ -1,26 +1,7 @@
+import { aaThreeOneLetterNames } from './lookupTables'
+
 export const convertThreeToOneLetter = (protein) => {
-  const aaLookupTable = {
-    Ala: 'A',
-    Arg: 'R',
-    Asn: 'N',
-    Asp: 'D',
-    Cys: 'C',
-    Glu: 'E',
-    Gln: 'Q',
-    Gly: 'G',
-    His: 'H',
-    Ile: 'I',
-    Leu: 'L',
-    Lys: 'K',
-    Met: 'M',
-    Phe: 'F',
-    Pro: 'P',
-    Ser: 'S',
-    Thr: 'T',
-    Trp: 'W',
-    Tyr: 'Y',
-    Val: 'V',
-    };
+
 
     // strip spacers and remove * from C-term if present
     const proteinStarRemoved =
@@ -36,7 +17,7 @@ export const convertThreeToOneLetter = (protein) => {
 
   const oneLetterArr = [];
   proteinArray.map((pos) => {
-    return oneLetterArr.push(aaLookupTable[pos]);
+    return oneLetterArr.push(aaThreeOneLetterNames[pos]);
   });
   const oneLetterStr = oneLetterArr.join('');
   return oneLetterStr;
