@@ -5,6 +5,19 @@
 ### &emsp;[Live site here](https://creative-cocada-575991.netlify.app/)
 
 
+<p style="text-align: center;">
+<hr />
+<h4>1st March 2023: updating begun</h4>  
+I'm just starting a 4-stage revamp:
+1. remove duplication
+2. modularise - ensure I have separate computation and display components
+3. migrate to TypeScript
+4. migrate to something other than CRA (likely Vite / astro / NextJS).
+
+I'm also keen to add some API functionality regarding getting proteins from / sending searches to UniPROT / BLAST.
+<hr />
+</p>
+
 This repo is what happens when a molecular biologist learns web development - you start building some tools you wish you'd been able to use for the last decade or so.  This was my first website, build with React (CRA), JavaScript and Tailwind. On my todo is a significant refactor as its really not DRY, and I'd prefer it in TS. None of that impacts functionality for any molecular biologists out there.
 
 
@@ -38,7 +51,7 @@ Returns reverse complement of your strand (ATGCAA -> TTGCAT).
 
 
 ## Questions / comments
-Please get in touch with feedback / requests. This was my first JS project, so I'd love feedback, and I want it to be useful, so happy to add featues. I've a list of possibles, so do let me know if there are any I could prioritise / you'd like to help you (however you like - via Github, [email](mailto: officechrisgarden@gmail.com), [LinkedIn](https://www.linkedin.com/in/chris-cozens-b2883a45/)). Also, do get in touch with problems/typos. 
+Please get in touch with feedback / requests. This was my first JS project, so I'd love feedback, and I want it to be useful, so happy to add featues. I've a list of possibles, so do let me know if there are any I could prioritise / you'd like to help you (however you like - via Github, [email](mailto:officechrisgarden@gmail.com), [LinkedIn](https://www.linkedin.com/in/chris-cozens-b2883a45/)). Also, do get in touch with problems/typos. 
 
 - primer analysis
 	- melting temp calculator
