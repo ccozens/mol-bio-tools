@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 // import modules to test
-import { ReverseComplementDNA } from '../components/reverse-complement';
+import { ReverseComplementDNA } from '../../components/reverse-complement';
 
 // tbr-tab for test block
 describe('transcribe functionality', () => {

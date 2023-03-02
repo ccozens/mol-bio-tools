@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 // import modules to test
-import { countAAsOneLetter, countAAsThreeLetter } from '../scripts/proteinBarChartCounts'
+import { countAAsOneLetter, countAAsThreeLetter } from '../../functions/proteinBarChartCounts'
 
 // tbj-tab for test block
 

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 // import modules to test
-import { complementDNA } from '../scripts/complementDNA';
+import { complementDNA } from '../../functions/complementDNA';
 
 // tbj-tab for test block
 

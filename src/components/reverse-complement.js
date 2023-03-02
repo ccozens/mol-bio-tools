@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { checkDnaInput } from '../scripts/checkDnaInput';
-import { reverseComplementDNA } from '../scripts/reverse-complement-script';
+import { checkDnaInput } from '../functions/checkDnaInput';
+import { reverseComplementDNA } from '../functions/reverse-complement-function';
 export const ReverseComplementDNA = () => {
   const [input, setInput] = useState('ATGCAA');
 

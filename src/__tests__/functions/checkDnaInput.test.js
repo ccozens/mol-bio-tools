@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 // import modules to test
-import { checkDnaInput } from '../scripts/checkDnaInput';
+import { checkDnaInput } from '../../functions/checkDnaInput';
 
 // tbj-tab for test block
 

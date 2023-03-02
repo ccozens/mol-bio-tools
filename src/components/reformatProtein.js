@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { checkProteinThreeLetterInput } from '../scripts/checkProteinThreeLetterInput';
-import { convertThreeToOneLetter } from '../scripts/convertThreeToOneLetter';
+import { checkProteinThreeLetterInput } from '../functions/checkProteinThreeLetterInput';
+import { convertThreeToOneLetter } from '../functions/convertThreeToOneLetter';
 
 export const ReformatProtein = () => {
   const [input, setInput] = useState('MetIleLeuAsp');

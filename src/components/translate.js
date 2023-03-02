@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { checkDnaInput } from '../scripts/checkDnaInput';
-import { translateDna } from '../scripts/translate-script';
-import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
+import { checkDnaInput } from '../functions/checkDnaInput';
+import { translateDna } from '../functions/translate-function';
+import { ComputeExtinctionCoefficients } from '../functions/computeProteinCoefficients';
 import { ProteinChart } from './proteinChart';
-import { tgo } from '../scripts/lookupTables';
+import { tgo } from '../functions/lookupTables';
 
 export const Translate = () => {
   // control textbox default content and updating

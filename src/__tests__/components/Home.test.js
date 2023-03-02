@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Home } from '../components/home';
-import ResizeObserver from '../__mocks__/resizeObserver'; // needed to prevent ResizeObserver error
+import { Home } from '../../components/home';
+import ResizeObserver from '../../__mocks__/resizeObserver'; // needed to prevent ResizeObserver error
 
 
 describe ('check components render', () => {

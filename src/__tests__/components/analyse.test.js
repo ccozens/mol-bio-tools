@@ -2,11 +2,11 @@ import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
+import ResizeObserver from '../../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
-import { AnalyseProtein } from '../components/analyseProtein';
-import { computeProteinMW } from '../scripts/computeProteinMW';
-// import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
+import { AnalyseProtein } from '../../components/analyseProtein';
+import { computeProteinMW } from '../../functions/computeProteinMW';
+
 
 
 describe('Analyse functionality', () => {  

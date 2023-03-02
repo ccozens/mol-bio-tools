@@ -3,7 +3,7 @@ import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 // import modules to test
-import { Transcribe } from '../components/transcribe';
+import { Transcribe } from '../../components/transcribe';
 
 
 // tbr-tab for test block

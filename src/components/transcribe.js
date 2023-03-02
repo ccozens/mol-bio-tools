@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { checkDnaInput } from '../scripts/checkDnaInput';
-import { transcribe } from '../scripts/transcribe-script';
+import { checkDnaInput } from '../functions/checkDnaInput';
+import { transcribe } from '../functions/transcribe-function';
 
 export const Transcribe = () => {
   const [input, setInput] = useState('ATGCAA');

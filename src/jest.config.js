@@ -1,5 +1,5 @@
 const config = {
-  collectCoverageFrom: ['./src/components/**', './src/scripts/**'],
+  collectCoverageFrom: ['./src/components/**', './src/functions/**'],
   coverageThreshold: {
     global: {
       functions: 80,

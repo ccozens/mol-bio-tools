@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { checkDnaInput } from '../scripts/checkDnaInput';
-import { approxDsDnaMw, exactDsDnaMw, gcRatio } from '../scripts/dnaAnalysis.ts';
-import { tgo } from '../scripts/lookupTables';
+import { checkDnaInput } from '../functions/checkDnaInput';
+import { approxDsDnaMw, exactDsDnaMw, gcRatio } from '../functions/dnaAnalysis.ts';
+import { tgo } from '../functions/lookupTables';
 
 export const AnalyseDNA = () => {
   const [lenInput, setNumInput] = useState(tgo.dna.length);

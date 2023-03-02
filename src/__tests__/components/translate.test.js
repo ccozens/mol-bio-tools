@@ -2,12 +2,11 @@ import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import ResizeObserver from '../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
+import ResizeObserver from '../../__mocks__/resizeObserver';  // needed to prevent ResizeObserver error
 // import modules to test
-import { Translate } from '../components/translate';
-import { computeProteinMW } from '../scripts/computeProteinMW';
-// import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
-import { TrypticDigest } from '../scripts/trypticDigest';
+import { Translate } from '../../components/translate';
+import { computeProteinMW } from '../../functions/computeProteinMW';
+import { TrypticDigest } from '../../functions/trypticDigest';
 
 describe('translate functionality', () => {  
   test('correct default text shown', () => {

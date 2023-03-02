@@ -11,7 +11,7 @@ import {
 import {
   countAAsOneLetter,
   countAAsThreeLetter,
-} from '../scripts/proteinBarChartCounts';
+} from '../functions/proteinBarChartCounts';
 
 export const ProteinChart = ({ outFormat, protein }) => {
   // update proteinAACounts when outFormat or protein changes

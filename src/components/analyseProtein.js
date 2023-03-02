@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { checkProteinOneLetterInput } from '../scripts/checkProteinOneLetterInput';
+import { checkProteinOneLetterInput } from '../functions/checkProteinOneLetterInput';
 import { ProteinChart } from './proteinChart';
-import { ComputeExtinctionCoefficients } from '../scripts/computeProteinCoefficients';
-import { tgo } from '../scripts/lookupTables';
+import { ComputeExtinctionCoefficients } from '../functions/computeProteinCoefficients';
+import { tgo } from '../functions/lookupTables';
 
 export const AnalyseProtein = () => {
   // control textbox default content and updating

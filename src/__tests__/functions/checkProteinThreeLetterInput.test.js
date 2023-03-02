@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 // import modules to test
-import { checkProteinThreeLetterInput } from '../scripts/checkProteinThreeLetterInput';
+import { checkProteinThreeLetterInput } from '../../functions/checkProteinThreeLetterInput';
 
 // tbj-tab for test block
 

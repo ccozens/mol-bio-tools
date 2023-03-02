@@ -20,7 +20,7 @@
 .env.production.local
 
 # test file
-src/scripts/playground.js
+src/functions/play.js
 
 # sanity folder and token for localhost dev server 
 /mol-bio-tools
