@@ -1,5 +1,8 @@
+import { checkDnaInput } from "./checkDnaInput";
+
 export function complementDNA(dna) {
-  const dnaArray = Array.from(dna);
+  const checkedDna = checkDnaInput(dna);
+  const dnaArray = Array.from(checkedDna);
   let dnaComplementary = [];
   dnaArray.forEach((x) => {
     if (x === 'A') {
