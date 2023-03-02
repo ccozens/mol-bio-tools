@@ -1,22 +1,21 @@
 name: Build and Test React Application
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-    
+    branches: [main]
+
 jobs:
   buildAndTest:
     name: Build and Test
     runs-on: ubuntu-latest
-    
-    
-# Steps represent a sequence of tasks that will be executed as part of the job
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Install dependencies
@@ -26,4 +25,4 @@ jobs:
         run: npm run build
 
       - name: Test
-        run: npm test -- --coverage
+        run: npm run test -- --coverage .
