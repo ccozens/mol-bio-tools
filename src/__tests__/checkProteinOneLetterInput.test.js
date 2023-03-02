@@ -4,7 +4,7 @@ import { checkProteinOneLetterInput } from '../scripts/checkProteinOneLetterInpu
 
 // tbj-tab for test block
 
-describe('validate checkint that protein is in one letter input format', () => {
+describe('validate that protein is in one letter input format', () => {
 test('checkProteinOneLetterInput should throw an error if any characters other thann ARNDCEQGHILKMFPSTWYV present', () => {
   //setup
   const proteinError1 = 'MILDTDYITEDGKZPVIRIFKKENGEFKIDYDRNFEPZYIYALLKDDSAIEDVKKITAERHGT';
