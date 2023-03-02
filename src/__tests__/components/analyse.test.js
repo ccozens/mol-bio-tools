@@ -30,7 +30,7 @@ describe('Analyse functionality', () => {
     await user.click(txInput);
     // expect output box to contain correct output when type in input box
     const protein = ('MILD');
-    const output = screen.getByLabelText('Computed parameters');
+    const output = screen.getByLabelText('Protein parameters');
     user.keyboard(protein);
     await waitFor(() => {
       expect(output).toHaveTextContent('4 amino acids')
