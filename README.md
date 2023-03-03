@@ -8,11 +8,12 @@
 <p style="text-align: center;">
 <hr />
 <h4>1st March 2023: updating begun</h4>  
-I'm just starting a 4-stage revamp:
-1. remove duplication
-2. modularise - ensure I have separate computation and display components
-3. migrate to TypeScript
-4. migrate to something other than CRA (likely Vite / astro / NextJS).
+I'm just starting a 4-stage revamp:   <br>
+1. remove duplication   <br>
+2. modularise - ensure I have separate computation and display components   <br>
+** during modularise, I realise I need to add proper state management to fix some of the workarounds I implemented when I built. Given points 3 and 4, a rebuild with redux or similar baked in from the outset seems most sensible **   <br>
+3. migrate to TypeScript   <br>
+4. migrate to something other than CRA (likely Vite / astro / NextJS).   <br>
 
 I'm also keen to add some API functionality regarding getting proteins from / sending searches to UniPROT / BLAST.
 <hr />
