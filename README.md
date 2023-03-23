@@ -7,6 +7,10 @@
 
 <p style="text-align: center;">
 <hr />
+<h4>23rd March 2023: update complete </h4>
+I regard this repo and site as deprecated. Please head over to [astro-mol-bio-tools](https://github.com/ccozens/astro-mol-bio-tools) for the new version.
+
+<hr />
 <h4>1st March 2023: updating begun</h4>  
 I'm just starting a 4-stage revamp:   <br>
 1. remove duplication   <br>
