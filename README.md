@@ -7,6 +7,10 @@
 
 <p style="text-align: center;">
 <hr />
+<h4>12th April 2023: migrated to vite </h4>
+Used this repo to test migrating from CRA to vite following [this excellent tutorial from Robin Wieruch](https://www.robinwieruch.de/vite-create-react-app/).
+
+<hr />
 <h4>23rd March 2023: update complete </h4>
 I regard this repo and site as deprecated. Please head over to [astro-mol-bio-tools](https://github.com/ccozens/astro-mol-bio-tools) for the new version.
 
