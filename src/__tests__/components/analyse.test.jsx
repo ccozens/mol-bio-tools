@@ -1,3 +1,4 @@
+import { describe, test } from 'vitest';
 import React from 'react';
 import { screen, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -12,6 +13,9 @@ import { computeProteinMW } from '../../functions/computeProteinMW';
 describe('Analyse functionality', () => {  
 
   test('correct default text shown', () => {
+    // render AnalyseProtein component
+    
+
     render(<AnalyseProtein />);
     // should display default state 
     const inputBox = screen.getByLabelText('Protein input form for analysis');

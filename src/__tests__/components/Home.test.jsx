@@ -1,3 +1,4 @@
+import { describe, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Home } from '../../components/home';
 import ResizeObserver from '../../__mocks__/resizeObserver'; // needed to prevent ResizeObserver error
